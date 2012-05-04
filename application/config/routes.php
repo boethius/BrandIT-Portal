@@ -41,9 +41,10 @@ $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['companies/create'] = 'companies/create';
+$route['companies/edit/(:any)'] = 'companies/edit/$1';
 $route['companies/(:any)'] = 'companies/view/$1';
 $route['companies'] = 'companies';
-$route['(:any:)'] = 'pages/view/$1';
+$route['(:any:)'] = 'companies/view/$1';
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

@@ -6,11 +6,11 @@ class Companies_model extends CI_Model {
 		$this->load->database();
 	}
 	
-	public function get_news($company_id = FALSE)
+	public function get_companies($company_id = FALSE)
 	{
-		if ($slug === FALSE)
+		if ($company_id === FALSE)
 		{
-			$query = $this->db->get('companies');
+			//$query = $this->db->get('companies');
 			$query = $this->db->get_where('companies', array('active' => 1));
 			return $query->result_array();
 		}
@@ -19,14 +19,16 @@ class Companies_model extends CI_Model {
 		return $query->row_array();
 	}
 	
-	public function set_news()
+	/* EDIT $company_id */
+	
+	public function set_companies($company_id)
 	{
+		log_message('debug', "company_id {$company_id}");
 		$this->load->helper('url');
 		
 		$data = array(
-			'name' => $this->input->post('name') 
+			'name' => $this->input->post('name'),
 			'streetline1' => $this->input->post('streetline1') ,
-			'company_id' => $this->input->post('company_id'),
 			'streetline2' => $this->input->post('streetline2') ,
 			'zip' => $this->input->post('zip') ,
 			'city' => $this->input->post('city') ,
@@ -37,11 +39,21 @@ class Companies_model extends CI_Model {
 			'website' => $this->input->post('website') ,
 			'tags' => $this->input->post('tags') ,
 			'description' => $this->input->post('description'),
-			'billed' => $this->input->post('billed') ,
-			'active' => $this->input->post('active')
+			'billed' => $this->input->post('billed'), 
+			'active' => 1
 		);
+		/*
 		
-		return $this->db->insert('news', $data);
+		,
+			'active' => $this->input->post('active')
+			
+			*/
+		if($company_id == 0)
+			return $this->db->insert('companies', $data);
+		else{
+			$this->db->where('company_id',$company_id);
+			return $this->db->update('companies', $data);
+		}
 	}
 	
 }

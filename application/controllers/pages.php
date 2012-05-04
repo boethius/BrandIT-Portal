@@ -8,8 +8,8 @@ class Pages extends CI_Controller {
 		if ( ! file_exists('/home/httpd/vhosts/portalseite.ch/httpdocs/application/views/pages/'.$page.'.php'))
 		{
 			// Whoops, we don't have a page for that!
-			//echo 'boh';
-			show_404();
+			echo 'boh';
+			//show_404();
 		}
 		
 		$data['title'] = ucfirst($page); // Capitalize the first letter

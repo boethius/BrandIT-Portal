@@ -1,5 +1,5 @@
 <?php
-class News extends CI_Controller {
+class Companies extends CI_Controller {
 
 	public function __construct()
 	{
@@ -10,15 +10,14 @@ class News extends CI_Controller {
 	public function index()
 	{
 		$data['companies'] = $this->companies_model->get_companies();
-		$data['title'] = 'News archive';
+		$data['title'] = 'Companies';
 	
 		$this->load->view('templates/header', $data);
 		$this->load->view('companies/index', $data);
 		$this->load->view('templates/footer');
 	}
 
-	public function view($company_id)
-	{
+	public function view($company_id){
 		$data['companies_item'] = $this->companies_model->get_companies($company_id);
 	
 		if (empty($data['companies_item']))
@@ -26,21 +25,23 @@ class News extends CI_Controller {
 			show_404();
 		}
 	
-		$data['title'] = $data['companies_item']['title'];
+		$data['name'] = $data['companies_item']['name'];
 	
 		$this->load->view('templates/header', $data);
 		$this->load->view('companies/view', $data);
 		$this->load->view('templates/footer');
 	}
 	
-	public function create()
-	{
+	public function create(){
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		
+
 		
 		$data['title'] = 'Create a company';
 		
 		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
 		
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -51,12 +52,41 @@ class News extends CI_Controller {
 		}
 		else
 		{
-			$this->companies_model->set_companies();
+			$this->companies_model->set_companies(0);
+			$this->load->view('companies/success');
+		}
+	}
+	
+	public function edit($company_id){
+	
+		$data['companies_item'] = $this->companies_model->get_companies($company_id);
+	
+			if (empty($data['companies_item']))
+			{
+				show_404();
+			}
+		$data['company_id'] = $company_id;
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
+		$data['title'] = 'Edit a company';
+		
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('templates/header', $data);	
+			$this->load->view('companies/edit', $data);
+			$this->load->view('templates/footer');
+			
+		}
+		else
+		{
+			$this->companies_model->set_companies($company_id);
 			$this->load->view('companies/success');
 		}
 	}
 
-	
 }
 
 

@@ -3,10 +3,7 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('companies/create') ?>
-
 <ul>
-  <li><label for="portal_id">portal_id</label>
-<input type="input" name="portal_id" /></li>
   <li><label for="name">name</label>
 <input type="input" name="name" /></li>
   <li><label for="streetline1">streetline1</label>
@@ -30,12 +27,8 @@
   <li><label for="tags">tags</label>
 <input type="input" name="tags" /></li>
   <li><label for="description">description</label>
-<input type="input" name="description" /></li>
-  <li><label for="billed">billed</label>
-<input type="input" name="billed" /></li>
-  <li><label for="active">active</label>
-<input type="input" name="active" /></li>
+<textarea name="description"></textarea></li>
 </ul>
-	<input type="submit" name="submit" value="Create companies item" /> 
 
+	<input type="submit" name="submit" value="Create" /> 
 </form>
