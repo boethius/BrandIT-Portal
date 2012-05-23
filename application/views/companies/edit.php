@@ -2,6 +2,8 @@
 
 <?php echo validation_errors(); ?>
 
+<?php echo $companies_item['company_id']; ?>
+
 <?php echo form_open('companies/edit/'.$companies_item['company_id']) ?>
 
 
@@ -28,6 +30,10 @@
 <input type="input" name="website" value="<?php echo $companies_item['website'] ?>" id="website" /></li>
   <li><label for="tags">tags</label>
 <input type="input" name="tags" value="<?php echo $companies_item['tags'] ?>" id="tags" /></li>
+  <li><label for="lat">lat</label>
+<input type="input" name="lat" value="<?php echo $companies_item['tags'] ?>" id="lat" /></li>
+  <li><label for="long">long</label>
+<input type="input" name="long" value="<?php echo $companies_item['tags'] ?>" id="long" /></li>
   <li><label for="description">description</label>
 <textarea name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
 </ul>

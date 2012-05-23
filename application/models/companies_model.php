@@ -38,6 +38,8 @@ class Companies_model extends CI_Model {
 			'email' => $this->input->post('email') ,
 			'website' => $this->input->post('website') ,
 			'tags' => $this->input->post('tags') ,
+			'lat' => $this->input->post('lat') ,
+			'long' => $this->input->post('long') ,
 			'description' => $this->input->post('description'),
 			'billed' => $this->input->post('billed'), 
 			'active' => 1
