@@ -87,13 +87,21 @@ class Companies extends CI_Controller {
 		}
 	}
 	
-	
+	public function live($company_id, $live){
+		//$question_id = $this->uri->segment(2);
+		$data['output'] = "{$company_id} {$live}";
+		$this->load->view('companies/success', $data);
+		
+		$this->companies_model->set_live($company_id, $live);
+		
+	}
 	
 	
 	public function delete($company_id){
 		
 		$this->companies_model->del_companies($company_id);
-		$this->load->view('companies/success');
+		$data['output'] = "Deleted {$company_id}";
+		$this->load->view('companies/success', $data);
 	}
 	
 
