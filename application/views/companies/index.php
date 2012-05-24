@@ -12,7 +12,7 @@
 <<<<<<< HEAD
     <p><a href="<?php echo $companies_item['company_id'] ?>">View company</a> | <a href="edit/<?php echo $companies_item['company_id'] ?>">Edit company</a> | <a href="delete/<?php echo $companies_item['company_id'] ?>">Delete company</a></p>
 =======
-    <p><a href="<?php echo $companies_item['company_id'] ?>">View company</a> | <a href="edit/<?php echo $companies_item['company_id'] ?>">Edit company</a>> | <a href="delete/<?php echo $companies_item['company_id'] ?>">Delete company</a></p>
+    <p><a href="<?php echo $companies_item['company_id'] ?>">View company</a> | <a href="edit/<?php echo $companies_item['company_id'] ?>">Edit company</a> | <a href="delete/<?php echo $companies_item['company_id'] ?>">Delete company</a></p>
 >>>>>>> 4fcd6f9e9b82abed659f1c2561a7d2c8304e15e7
 
 <?php endforeach ?>
