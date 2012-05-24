@@ -9,6 +9,6 @@
    
     <h3>Description</h3>
     <p><?php echo $companies_item['description'] ?></p>
-    <p><a href="<?php echo $companies_item['company_id'] ?>">View company</a> | <a href="edit/<?php echo $companies_item['company_id'] ?>">Edit company</a></p>
+    <p><a href="<?php echo $companies_item['company_id'] ?>">View company</a> | <a href="edit/<?php echo $companies_item['company_id'] ?>">Edit company</a>> | <a href="delete/<?php echo $companies_item['company_id'] ?>">Delete company</a></p>
 
 <?php endforeach ?>

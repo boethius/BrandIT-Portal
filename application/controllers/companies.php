@@ -86,6 +86,16 @@ class Companies extends CI_Controller {
 			$this->load->view('companies/success');
 		}
 	}
+	
+	
+	
+	
+	public function delete($company_id){
+		
+		$this->companies_model->del_companies($company_id);
+		$this->load->view('companies/success');
+	}
+	
 
 }
 

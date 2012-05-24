@@ -58,5 +58,14 @@ class Companies_model extends CI_Model {
 		}
 	}
 	
+	public function del_companies($company_id){
+		log_message('debug', "deleted company_id {$company_id}");
+		
+		$data = array("company_id" => $company_id);
+		
+		return $this->db->delete('companies', $data);
+		
+	}
+	
 }
 ?>
