@@ -67,5 +67,10 @@ class Companies_model extends CI_Model {
 		
 	}
 	
+	public function set_live($company_id,$live = 1){
+		
+		log_message('debug', "live: {$live}, company_id {$company_id}");
+	}
+	
 }
 ?>
