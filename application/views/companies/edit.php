@@ -37,6 +37,7 @@
   <li><label for="description">description</label>
 <textarea name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
 </ul>
-	<input type="submit" name="submit" value="Edit" id="submit" value="Create companies item" /> 
+<input type="button" name="back" onclick="location.href='/index.php/companies/'" value="Back" />
+<input type="submit" name="submit" value="Edit" id="submit" value="Create companies item" /> 
 
 </form>

@@ -30,5 +30,6 @@
 <textarea name="description"></textarea></li>
 </ul>
 
+<input type="button" name="back" onclick="location.href='/index.php/companies/'" value="Back" />
 	<input type="submit" name="submit" value="Create" /> 
 </form>
