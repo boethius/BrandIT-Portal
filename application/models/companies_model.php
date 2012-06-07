@@ -6,12 +6,18 @@ class Companies_model extends CI_Model {
 		$this->load->database();
 	}
 	
+	
+	
 	public function get_companies($company_id = FALSE)
 	{
+	
+		$this->load->helper('domains');
+
+		
 		if ($company_id === FALSE)
 		{
 			//$query = $this->db->get('companies');
-			$query = $this->db->get_where('companies', array('active' => 1));
+			$query = $this->db->get_where('companies', array('active' => 1, "portal_id" => get_portal_id()));
 			return $query->result_array();
 		}
 		
