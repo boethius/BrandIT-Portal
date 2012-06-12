@@ -47,7 +47,7 @@ $route['companies/create'] = 'companies/create';
 $route['companies/(:any)'] = 'companies/view/$1';
 $route['companies'] = 'companies';
 $route['(:any:)'] = 'companies/view/$1';
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "login";
 $route['404_override'] = '';
 
 
