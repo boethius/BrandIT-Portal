@@ -23,7 +23,7 @@
 | RESERVED ROUTES
 | -------------------------------------------------------------------------
 |
-| There area two reserved routes:
+| There area two reserved routes: 
 |
 |	$route['default_controller'] = 'welcome';
 |
@@ -45,9 +45,16 @@ $route['companies/live/(:any)'] = 'companies/live/$1';
 $route['companies/delete/(:any)'] = 'companies/delete/$1';
 $route['companies/create'] = 'companies/create';
 $route['companies/(:any)'] = 'companies/view/$1';
-$route['companies'] = 'companies';
+$route['admin'] = 'admin';
+$route['admin/edit/(:any)'] = 'admin/edit/$1';
+$route['admin/live/(:any)'] = 'admin/live/$1';
+$route['admin/delete/(:any)'] = 'admin/delete/$1';
+$route['admin/create'] = 'admin/create';
+$route['admin/logout'] = 'admin/logout';
+$route['admin/(:any)'] = 'admin/view/$1';
+$route['admin'] = 'admin';
 $route['(:any:)'] = 'companies/view/$1';
-$route['default_controller'] = "login";
+$route['default_controller'] = "companies";
 $route['404_override'] = '';
 
 

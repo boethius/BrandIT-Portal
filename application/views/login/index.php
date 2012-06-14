@@ -7,6 +7,9 @@
  <body>
    <h1>Simple Login with CodeIgniter</h1>
    <?php echo validation_errors(); ?>
+   <pre>
+   <?php print_r($output); ?>
+   </pre>
    <?php echo form_open('verifylogin'); ?>
      <label for="username">Username:</label>
      <input type="text" size="20" id="username" name="username"/>
