@@ -19,11 +19,11 @@ class Companies_model extends CI_Model {
 		return $query->row_array();
 	}
 	
-	/* EDIT $company_id */
+	/* EDIT $company_id kjkjkjkj*/
 	
 	public function set_companies($company_id)
 	{
-		log_message('debug', "company_id {$company_id}");
+		log_message('debug', "company_id {$company_id}"); 
 		$this->load->helper('url');
 		
 		$data = array(
