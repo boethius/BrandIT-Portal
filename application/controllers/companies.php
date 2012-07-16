@@ -10,9 +10,14 @@ class Companies extends CI_Controller {
 	public function index()
 	{
 		$data['companies'] = $this->companies_model->get_companies();
+		$data['portal'] = $this->companies_model->get_portal();
 		$data['title'] = 'Companies';
 	
+		
+	
 		$this->load->view('templates/header', $data);
+		$this->load->view('templates/custom.css.php',$data);
+		$this->load->view('templates/search');
 		$this->load->view('companies/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -43,20 +48,18 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		
-		if ($this->form_validation->run() === FALSE)
-		{
+		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('templates/header', $data);	
 			$this->load->view('companies/create');
 			$this->load->view('templates/footer');
 			
 		}
-		else
-		{
+		else {
 			$this->companies_model->set_companies(0);
 			$this->load->view('companies/success');
 		}
 	}
-	
+	/*
 	public function edit($company_id){
 	
 		$data['companies_item'] = $this->companies_model->get_companies($company_id);
@@ -104,7 +107,7 @@ class Companies extends CI_Controller {
 		$this->load->view('companies/success', $data);
 	}
 	
-
+*/
 }
 
 

@@ -40,6 +40,7 @@
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
+$route['search/(:any)'] = 'search/search/$1';
 $route['companies/edit/(:any)'] = 'companies/edit/$1';
 $route['companies/live/(:any)'] = 'companies/live/$1';
 $route['companies/delete/(:any)'] = 'companies/delete/$1';

@@ -1,10 +1,26 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php echo $title ?> - Portalsite</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-</head>
-<body>
-	<h1>Portalseite</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+    <!--Head Start-->
+    <head>
+    
+        <title><?php echo $title ?> - Portalsite</title>
+        
+        <!--Meta-Data Start-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Brandit, Portal, Portalseite" />
+        <meta name="description" content="Brandit Portalseite -  Hier finden Sie..." />
+        <!--Meta-Data Ende-->
+        
+        <!--Link-Data Start-->
+        <link href="<?php base_url() ?>/css/global.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="<?php base_url() ?>/css/ui-darkness/jquery-ui-1.8.21.custom.css" media="all" />
+        <!--Link-Data Ende-->
+        
+        <!--Script-Data Start-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+		<script src="<?php base_url() ?>/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+		<script src="<?php base_url() ?>/js/portal.js" type="text/javascript"></script>
+        <!--Script-Data End-->
+    <!-- css style start -->

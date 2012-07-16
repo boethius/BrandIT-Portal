@@ -19,7 +19,8 @@ class VerifyLogin extends CI_Controller {
    if($this->form_validation->run() == FALSE)
    {
 		
-		$data['output'] = "test {$this->session->userdata('logged_in')}";
+		//$data['output'] = "test {$this->session->userdata('logged_in')}";
+		$data['output'] = "";
      //Field validation failed.&nbsp; User redirected to login page
      $this->load->view('login/index',$data);
    }

@@ -1,30 +1,12 @@
 <?php
-class Companies_model extends CI_Model {
+class Admin_model extends CI_Model {
 
 	public function __construct()
 	{
 		$this->load->database();
 	}
 	
-	public function get_portal(){
-		
-		$this->load->helper('domains');
 	
-		//$this->db->where()
-		//$this->db->like('name',$query);
-		//$this->db->or_like('tags',$query);
-		$sql = "SELECT
-					*
-				FROM
-					portals
-				WHERE
-					portal_id = ?";
-					
-		//$query = $this->db->get_where('companies', array("portal_id" => get_portal_id()));
-		$query = $this->db->query($sql, array(get_portal_id()));
-		return $query->row_array();
-
-	}
 	
 	public function get_companies($company_id = FALSE)
 	{
@@ -35,25 +17,11 @@ class Companies_model extends CI_Model {
 		if ($company_id === FALSE)
 		{
 			//$query = $this->db->get('companies');
-			//$this->db->order_by("name","random");
-			//$query = $this->db->get_where('companies', array('active' => 1, "portal_id" => get_portal_id()));
-			
-			$sql = "SELECT
-						*
-					FROM
-						companies
-					WHERE
-						portal_id = ?
-					AND
-						active = 1
-					ORDER BY rand()";
-						
-			//$query = $this->db->get_where('companies', array("portal_id" => get_portal_id()));
-			$query = $this->db->query($sql, array(get_portal_id()));
+			$query = $this->db->get_where('companies', array("portal_id" => get_portal_id()));
 			return $query->result_array();
 		}
 		
-		$query = $this->db->get_where('companies', array('active' => 1, 'company_id' => $company_id));
+		$query = $this->db->get_where('companies', array('company_id' => $company_id));
 		return $query->row_array();
 	}
 	
@@ -64,7 +32,6 @@ class Companies_model extends CI_Model {
 		log_message('debug', "company_id {$company_id}");
 		$this->load->helper('url');
 		$this->load->helper('domains');
-		
 		
 		$data = array(
 			'name' => $this->input->post('name'),
@@ -81,9 +48,9 @@ class Companies_model extends CI_Model {
 			'lat' => $this->input->post('lat') ,
 			'long	' => $this->input->post('long') ,
 			'description' => $this->input->post('description'),
+			'billed' => $this->input->post('billed'), 
 			'portal_id' => get_portal_id(),
-			'billed' => 0, 
-			'active' => 0
+			'active' => $this->input->post('active') == 1 ? 1 : 0
 		);
 		/*
 		
@@ -91,21 +58,8 @@ class Companies_model extends CI_Model {
 			'active' => $this->input->post('active')
 			
 			*/
-		if($company_id == 0){
-			/*
-$portal = get_portal_property();
-			$this->load->library('email');
-
-			$this->email->from('info@'.get_domain(), $portal['name']);
-			$this->email->to('sb@toweb.ch'); 
-			
-			$this->email->subject('Email Test');
-			$this->email->message('Testing the email class.');	
-			
-			$this->email->send();
-*/
+		if($company_id == 0)
 			return $this->db->insert('companies', $data);
-		}
 		else{
 			$this->db->where('company_id',$company_id);
 			return $this->db->update('companies', $data);
