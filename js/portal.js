@@ -142,7 +142,7 @@ function resetSearch(){
 
 
 function previous(){
-
+	
 	new_page = parseInt($('#current_page').val()) - 1;
 	//if there is an item before the current active link run the function
 	if($('.active_page').prev('.page_link').length==true){
