@@ -29,7 +29,7 @@ website
                             </div>
                             <div class="list_right_text_holder">
                             	<div class="list_right_text_top"></div>
-                                <div class="list_right_text_center"><strong>Details:</strong> <?php echo $companies_item['description'] ?></div>
+                                <div class="list_right_text_center"><?php echo $companies_item['description'] ?></div>
                                 <div class="list_right_text_bottom"></div>
                                 <div class="clear"></div>
                             </div>
@@ -44,7 +44,6 @@ website
                                 <div class="clear"></div>
 <div id='page_navigation'></div>  
         <div id="sidebar"></div>
-        
         
 <?php 
 /*

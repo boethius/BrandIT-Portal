@@ -16,7 +16,7 @@ div#pagewrapper {
 div#header {
 	margin: 0;
     padding: 0;
-	height: 420px;
+	height: 250px;
 	background: url(/layout/header-bg.png) no-repeat center top white;
 }
 
@@ -31,7 +31,7 @@ div#logo {
 	float: left;
 	padding: 0;
     margin-right: 600px;
-	height: 170px;
+	height: 0px;
 	width: 380px;
 }
 
@@ -57,7 +57,7 @@ div.clear {
 
 div#content {
 	margin: 0 auto;
-    padding: 0;
+    padding: 0 0 20px;
 	min-height: 500px;
 	width: 980px;
 }
@@ -83,7 +83,7 @@ div#sidebar {
 	float: left;
 	margin-top: 20px;
     padding: 0;
-	min-height: 300px;
+	min-height: 0px;
 	width: 320px;
 }
 
@@ -140,9 +140,10 @@ div.list_entry {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	width: 650px;
-	border-top: 1px solid #747474;
-	border-bottom: 1px solid #747474;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	background-color: #f6f6f6;
+	padding-right: 40px;
 }
 
 div.list_image {
@@ -166,6 +167,8 @@ div.list_title {
 	padding: 0;
 	width: 510px;
 	height: 30px;
+	font-weight: bold;
+	font-size: 1.5em;
 }
 
 div.list_left_text {
@@ -174,7 +177,6 @@ div.list_left_text {
 	padding: 0;
 	width: 177px;
 	min-height: 60px;
-	border-top: 1px solid #b6b6b6;
 }
 
 div.list_right_text_holder {
@@ -195,9 +197,9 @@ div.list_right_text_top {
 
 div.list_right_text_center {
 	margin: 0;
-    padding: 0;
+	padding: 0 10px 0 10px;
 	min-height: 100px;
-	width: 328px;
+	width: 308px;
 	background: url(/layout/list_text_box_center.png) repeat-y left top transparent;
 }
 
@@ -208,4 +210,38 @@ div.list_right_text_bottom {
 	width: 328px;
 	background: url(/layout/list_text_box_bottom.png) repeat-y left top transparent;
 }
+#page_navigation a {
+	display: block;
+	float: left;
+	margin-right: 7px;
+}
+
+#regions {
+font-size: 16px;
+}
+#searchBar {
+height: 24px;
+width: 420px;
+border-radius: 6px;
+-moz-border-radius: 6px;
+border: 1px solid black;
+padding: 5px 10px;
+font-size: 16px;
+margin-top: 5px;
+background: #222;
+color: white;
+}
+
+
+.companyForm li {
+list-style: none;
+padding: 5px;
+}
+
+.companyForm label {
+float: left;
+width: 120px;
+}
+
+
 

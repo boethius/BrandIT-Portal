@@ -8,7 +8,16 @@ class Search_model extends CI_Model {
 	
 	public function search_companies($ss = ""){
 		$this->load->helper('domains');
-	
+		
+		
+		if($this->input->post('region')){
+			
+			$region = $this->input->post('region');
+		}
+		else {
+			
+			$region = "";
+		}
 		//$this->db->where()
 		//$this->db->like('name',$query);
 		//$this->db->or_like('tags',$query);
@@ -16,7 +25,12 @@ class Search_model extends CI_Model {
 					*
 				FROM
 					companies
-				WHERE
+				WHERE 
+				".($region == "" ? "" :
+				"
+					region = \"{$region}\"
+				AND"
+				)."
 					portal_id = ?
 				AND
 					active = 1

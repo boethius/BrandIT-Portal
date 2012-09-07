@@ -17,10 +17,6 @@ $(document).ready(function(){
 	originalSearch = $('#main').html();
 
 	$('#searchBar').autocomplete({
-		change: function(event, ui){
-			resetSearch();
-			//alert($(this).val());
-		},
 		close: function(event, ui){
 			resetSearch();
 		},
@@ -28,6 +24,8 @@ $(document).ready(function(){
 			$.ajax({
 				url: "/index.php/search/"+request.term,
 				dataType: "json",
+				data: {region: $('#regions').val()},
+				type: "POST",
 				success: function(data){
 					resetSearch();
 						//originalSearch = $('#main').html();
@@ -45,7 +43,7 @@ $(document).ready(function(){
                         res += item.zip+" "+item.city+'<br /><br />';
                         res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
                         res += '<div class="list_right_text_holder">';
-                    	res += '<div class="list_right_text_top">Info</div>';
+                    	res += '<div class="list_right_text_top"></div>';
                         res += '<div class="list_right_text_center">'+item.description+'</div>';
                         res += '<div class="list_right_text_bottom"></div>';
                         res += '<div class="clear"></div>';
@@ -80,6 +78,11 @@ var res = '<div class="companyItem" id="cid_'+item.company_id+'">';
 		}
 	}).click(function(e){
 		$(this).select();
+	}).blur(function(event, ui){
+		resetSearch();
+	}).change(function(event, ui){
+		resetSearch();
+		//alert($(this).val());
 	});
 	
 	
@@ -110,7 +113,7 @@ function paginate(){
 		else navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
 		current_link++;
 	}
-	if (number_of_pages > 1) navigation_html += '<a class="next_link" href="javascript:next();">Next</a>';
+	if (number_of_pages > 1) navigation_html += '<a class="next_link" href="javascript:next();">Weiter</a>';
 
 	$('#page_navigation').html(navigation_html);
 
@@ -127,6 +130,7 @@ function paginate(){
 
 function resetSearch(){
 	if($('#searchBar').val() == "" || $('#main').html() == "Kein resultat"){
+		//alert("orig search");
 		$('#main').html(originalSearch);
 		paginate();
 	}
@@ -166,7 +170,7 @@ function go_to_page(page_num){
 	end_on = start_from + show_per_page;
 	var navigation_html = '';
 	
-	if(page_num > 0) navigation_html = '<a class="previous_link" href="javascript:previous();">Prev</a>';
+	if(page_num > 0) navigation_html = '<a class="previous_link" href="javascript:previous();">Zurück</a>';
 	
 	current_link = 0;
 	while(number_of_pages > current_link){
@@ -174,7 +178,7 @@ function go_to_page(page_num){
 		else navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
 		current_link++;
 	}
-	if(page_num < number_of_pages-1) navigation_html += '<a class="next_link" href="javascript:next();">Next</a>';
+	if(page_num < number_of_pages-1) navigation_html += '<a class="next_link" href="javascript:next();">Weiter</a>';
 	$('#page_navigation').html(navigation_html);
 
 	//hide all children elements of main div, get specific items and show them

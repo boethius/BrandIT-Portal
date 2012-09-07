@@ -1,9 +1,11 @@
-<h2>Create a companies item</h2>
+
+  <div id="content">
+<h2>Firma registrieren</h2>
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('companies/create') ?>
-<ul>
+<ul class="companyForm">
   <li><label for="name">name</label>
 <input type="input" name="name" /></li>
   <li><label for="streetline1">streetline1</label>
@@ -14,6 +16,12 @@
 <input type="input" name="zip" /></li>
   <li><label for="city">city</label>
 <input type="input" name="city" /></li>
+  <li><label for="region">region</label>
+	<select name="regions" id="regions">
+		<?php foreach ($regions as $region): ?>
+		<option value="<?=$region['id']?>"><?=$i18n->get_value($region['region_name'])?></option>
+		<?php endforeach ?>
+	</select></li>
   <li><label for="telefon">telefon</label>
 <input type="input" name="telefon" /></li>
   <li><label for="telefax">telefax</label>
@@ -35,3 +43,5 @@
 <input type="button" name="back" onclick="location.href='/index.php/admin/'" value="Back" />
 	<input type="submit" name="submit" value="Create" /> 
 </form>
+
+</div>

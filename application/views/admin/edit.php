@@ -7,7 +7,7 @@
 <?php echo form_open('admin/edit/'.$companies_item['company_id']) ?>
 
 
-<ul>
+<ul class="register">
   <li><label for="name">name</label>
 <input type="input" name="name" value="<?php echo $companies_item['name'] ?>" id="name" /></li>
   <li><label for="streetline1">streetline1</label>

@@ -12,7 +12,7 @@ if ( ! function_exists('get_portal_id')){
 	  	
 	  	//$remote_host = "portalseite.ch.amphora.sui-inter.net";
 	  	
-	  	$remote_host_array = split($remote_host,'.');
+	  	$remote_host_array = explode($remote_host,'.');
 	  	
 	  	if($remote_host_array[0] == "www"){
 	  		$domain = "{$remote_host_array[1]}.{$remote_host_array[1]}";
@@ -46,7 +46,7 @@ if ( ! function_exists('get_portal_id')){
 	  	
 	  	//$remote_host = "portalseite.ch.amphora.sui-inter.net";
 	  	
-	  	$remote_host_array = split($remote_host,'.');
+	  	$remote_host_array = explode($remote_host,'.');
 	  	
 	  	if($remote_host_array[0] == "www"){
 	  		$domain = "{$remote_host_array[1]}.{$remote_host_array[1]}";
@@ -69,7 +69,7 @@ if ( ! function_exists('get_portal_id')){
 	  	
 	  	//$remote_host = "portalseite.ch.amphora.sui-inter.net";
 	  	
-	  	$remote_host_array = split($remote_host,'.');
+	  	$remote_host_array = explode($remote_host,'.');
 	  	
 	  	if($remote_host_array[0] == "www"){
 	  		$domain = "{$remote_host_array[1]}.{$remote_host_array[1]}";

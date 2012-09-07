@@ -3,7 +3,7 @@
  ?>
 
 <style type="text/css">
-a {
+a, a:visited, a:hover {
 	color: #<?php echo $portal['colors'] ?>;
 }
 </style>
