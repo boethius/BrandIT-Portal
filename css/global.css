@@ -10,14 +10,15 @@ body {
 div#pagewrapper {
 	margin: 0 auto;
     padding: 0;
-	background-color: white;
+    width: 100%;
+    position: absolute;
 }
 
 div#header {
 	margin: 0;
     padding: 0;
 	height: 250px;
-	background: url(/layout/header-bg.png) no-repeat center top white;
+	background: url(/layout/header-overlay.png) no-repeat center top;
 }
 
 div#header_content_holder {
@@ -26,6 +27,26 @@ div#header_content_holder {
 	height: 420px;
 	width: 980px;
 }
+
+
+
+#header_background {
+	height: 190px;
+	width: 100%;
+	position: absolute;	
+}
+
+#header_black{
+	height: 87px;
+	width: 100%;
+	background: url(/layout/header-underlay.png) repeat-x top;
+}
+
+#header_color{
+	height: 103px;
+	width: 100%;
+}
+
 
 div#logo {
 	float: left;
@@ -242,6 +263,4 @@ padding: 5px;
 float: left;
 width: 120px;
 }
-
-
 
