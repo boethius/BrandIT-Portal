@@ -56,7 +56,7 @@ class Companies_model extends CI_Model {
 		$query = $this->db->get_where('companies', array('active' => 1, 'company_id' => $company_id));
 		return $query->row_array();
 	}
-	
+
 	public function set_companies($company_id)
 	{
 		log_message('debug', "company_id {$company_id}"); 

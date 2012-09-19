@@ -7,6 +7,7 @@ class Companies extends CI_Controller {
 		$this->load->model('companies_model');
 		$this->load->model('region_model');
 		$this->load->model('i18n_model');
+		
 	}
 
 	public function index()
@@ -14,7 +15,7 @@ class Companies extends CI_Controller {
 		$data['companies'] = $this->companies_model->get_companies();
 		$data['portal'] = $this->companies_model->get_portal();
 		$data['regions'] = $this->region_model->get_regions();
-		$data['i18n'] = $this->i18n_model;;
+		$data['i18n'] = $this->i18n_model;
 		$data['title'] = 'Companies';
 	
 		
@@ -45,12 +46,43 @@ class Companies extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		
-
+		
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '0';
+		//$config['max_width'] = '1024';
+		//$config['max_height'] = '768';
+		
+		
+		$this->load->library('upload', $config);
+		
 		
 		$data['portal'] = $this->companies_model->get_portal();
 		$data['title'] = $this->i18n_model->get_value('createcompany');
 		$data['regions'] = $this->region_model->get_regions();
 		$data['i18n'] = $this->i18n_model;
+		
+		if(  ! $this->upload->do_upload())
+		{
+			
+			$data['i18n'] = $this->i18n_model;
+			$data["error"] = array('error' => $this->upload->display_errors());
+			echo '<pre>';
+			print_r($data);
+			echo '</pre>';
+			$this->load->view('companies/create', $data);
+		}
+		else
+		{
+			
+			$data["image"] = array('upload_data' => $this->upload->data());
+			
+			echo '<pre>';
+			print_r($data);
+			echo '</pre>';
+			$this->load->view('companies/create', $data);
+		}
+		
 		
 		//This is the Form Validation 
 		//it checks the fields for xxs, e-mail validation ect.
@@ -69,9 +101,6 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean');
 		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
 
-		
-		
-		
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('templates/header', $data);	
