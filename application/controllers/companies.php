@@ -5,14 +5,23 @@ class Companies extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('companies_model');
+		$this->load->model('region_model');
+		$this->load->model('i18n_model');
 	}
 
 	public function index()
 	{
 		$data['companies'] = $this->companies_model->get_companies();
+		$data['portal'] = $this->companies_model->get_portal();
+		$data['regions'] = $this->region_model->get_regions();
+		$data['i18n'] = $this->i18n_model;;
 		$data['title'] = 'Companies';
 	
+		
+	
 		$this->load->view('templates/header', $data);
+		$this->load->view('templates/custom.css.php',$data);
+		$this->load->view('templates/search');
 		$this->load->view('companies/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -38,7 +47,10 @@ class Companies extends CI_Controller {
 		
 
 		
-		$data['title'] = 'Create a company';
+		$data['portal'] = $this->companies_model->get_portal();
+		$data['title'] = $this->i18n_model->get_value('createcompany');
+		$data['regions'] = $this->region_model->get_regions();
+		$data['i18n'] = $this->i18n_model;
 		
 		//This is the Form Validation 
 		//it checks the fields for xxs, e-mail validation ect.
@@ -46,6 +58,7 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
 		$this->form_validation->set_rules('streetline1', 'Streetline1', 'required|xss_clean');
 		$this->form_validation->set_rules('streetline2', 'Streetline2', 'xss_clean');
+<<<<<<< HEAD
 		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean|numeric');
 		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
 		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
@@ -54,21 +67,40 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('website', 'Website', 'xss_clean|prep_url');
 		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean|alpha_numeric');
 		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean|alpha_numeric');
+=======
+		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean');
+		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
+		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
+		$this->form_validation->set_rules('region', 'Region', 'required|xss_clean|numeric');
+		$this->form_validation->set_rules('telefax', 'Telefax', 'xss_clean|numeric');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'xss_clean|numeric');
+		$this->form_validation->set_rules('website', 'Website', 'xss_clean|prep_url');
+		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+>>>>>>> Regions-Feature
 		
-		if ($this->form_validation->run() === FALSE)
-		{
+		
+		
+
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('templates/header', $data);	
-			$this->load->view('companies/create');
+			$this->load->view('templates/custom.css.php',$data);
+			$this->load->view('templates/pagehead');
+			$this->load->view('companies/create', $data);
 			$this->load->view('templates/footer');
 			
 		}
-		else
-		{
+		else {
 			$this->companies_model->set_companies(0);
+			$this->load->view('templates/header', $data);	
+			$this->load->view('templates/custom.css.php',$data);
+			$this->load->view('templates/pagehead');
 			$this->load->view('companies/success');
+			$this->load->view('templates/footer');
 		}
+
 	}
-	
+	/*
 	public function edit($company_id){
 	
 		$data['companies_item'] = $this->companies_model->get_companies($company_id);
@@ -116,7 +148,7 @@ class Companies extends CI_Controller {
 		$this->load->view('companies/success', $data);
 	}
 	
-
+*/
 }
 
 

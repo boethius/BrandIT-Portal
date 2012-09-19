@@ -40,14 +40,22 @@
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
+$route['search/(:any)'] = 'search/search/$1';
 $route['companies/edit/(:any)'] = 'companies/edit/$1';
 $route['companies/live/(:any)'] = 'companies/live/$1';
 $route['companies/delete/(:any)'] = 'companies/delete/$1';
 $route['companies/create'] = 'companies/create';
 $route['companies/(:any)'] = 'companies/view/$1';
-$route['companies'] = 'companies';
+$route['admin'] = 'admin';
+$route['admin/edit/(:any)'] = 'admin/edit/$1';
+$route['admin/live/(:any)'] = 'admin/live/$1';
+$route['admin/delete/(:any)'] = 'admin/delete/$1';
+$route['admin/create'] = 'admin/create';
+$route['admin/logout'] = 'admin/logout';
+$route['admin/(:any)'] = 'admin/view/$1';
+$route['admin'] = 'admin';
 $route['(:any:)'] = 'companies/view/$1';
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "companies";
 $route['404_override'] = '';
 
 
