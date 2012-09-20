@@ -95,4 +95,5 @@
 	<input type="submit" name="submit" value="<?=$i18n->get_value("create")?>" /> 
 </form>
 
+
 </div>

@@ -58,7 +58,7 @@ class Companies_model extends CI_Model {
 	}
 
 
-	public function set_companies($company_id)
+	public function set_companies($company_id, $filename = "")
 	{
 		log_message('debug', "company_id {$company_id}"); 
 		$this->load->helper('url');
@@ -83,7 +83,8 @@ class Companies_model extends CI_Model {
 			'description' => $this->input->post('description'),
 			'portal_id' => get_portal_id(),
 			'billed' => 0,
-			'active' => 0
+			'active' => 0,
+			'thumb' => $filename
 		);
 
 
