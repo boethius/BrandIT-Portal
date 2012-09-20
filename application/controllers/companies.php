@@ -58,16 +58,7 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
 		$this->form_validation->set_rules('streetline1', 'Streetline1', 'required|xss_clean');
 		$this->form_validation->set_rules('streetline2', 'Streetline2', 'xss_clean');
-<<<<<<< HEAD
-		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean|numeric');
-		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
-		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
-		$this->form_validation->set_rules('telefax', 'Telefax', 'xss_clean|numeric');
-		$this->form_validation->set_rules('mobile', 'Mobile', 'xss_clean|numeric');
-		$this->form_validation->set_rules('website', 'Website', 'xss_clean|prep_url');
-		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean|alpha_numeric');
-		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean|alpha_numeric');
-=======
+
 		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean');
 		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
 		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
@@ -77,7 +68,7 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('website', 'Website', 'xss_clean|prep_url');
 		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean');
 		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
->>>>>>> Regions-Feature
+
 		
 		
 		

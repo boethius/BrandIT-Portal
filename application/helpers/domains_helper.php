@@ -27,7 +27,12 @@ if ( ! function_exists('get_portal_id')){
         			domains"; 
         $query = $ci->db->get_where("domains",array("domain_name" => $domain));
         $row = $query->row_array();
-        $id = $row['portal_id'];
+        if(isset($row['portal_id']) ){
+        	$id = $row['portal_id'];
+        }
+        else {
+	        $id = 0;
+        }
        
         
         if(sizeof($row) == 0){
