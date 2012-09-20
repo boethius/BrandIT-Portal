@@ -26,8 +26,8 @@ class File_model extends CI_Model {
 		
 		$this->load->library('image_lib');
 		
-		$target_width = 50;
-		$target_height = 80;
+		$target_width = 135;
+		$target_height = 95;
 		
 		$current_ratio = $image_width / $image_height;
 		$target_ratio =  $target_width/$target_height;
