@@ -7,7 +7,9 @@ class Companies extends CI_Controller {
 		$this->load->model('companies_model');
 		$this->load->model('region_model');
 		$this->load->model('i18n_model');
-		
+
+		$this->load->model('file_model');
+
 	}
 
 	public function index()
@@ -61,6 +63,55 @@ class Companies extends CI_Controller {
 		$data['title'] = $this->i18n_model->get_value('createcompany');
 		$data['regions'] = $this->region_model->get_regions();
 		$data['i18n'] = $this->i18n_model;
+		$data['file_model'] = $this->file_model;
+		
+		if(  ! $this->upload->do_upload())
+		{
+			
+			$data['i18n'] = $this->i18n_model;
+			$data["error"] = array('error' => $this->upload->display_errors());
+			echo '<pre>';
+			print_r($data);
+			echo '</pre>';
+			$this->load->view('companies/create', $data);
+		}
+		else
+		{
+			
+			
+			//Loding the Uploaded Image into $data
+			$data["image"] = $this->upload->data();
+			
+
+			//extracting various information out of the $data
+			$imagetype = $data['image']['image_type'];
+			$filename = $data['image']['file_name'];
+			$filetype= $data['image']['file_type'];
+			$image_widht = $data['image']['image_width'];
+			$image_height = $data['image']['image_height'];
+			
+			
+			//tearing the string appart
+			$data_type = explode("/", $filetype);
+			
+			$datatype = $data_type[0];
+			
+						
+			
+			
+			
+			$data['error'] = $this->file_model->resizeImage($datatype ,$filename,$image_widht, $image_height);
+			
+			
+			echo '---------------------';
+			echo '<pre>';
+			print_r($data);
+			echo '</pre>';
+			
+			
+			$this->load->view('companies/create', $data);
+		}
+		
 		
 		if(  ! $this->upload->do_upload())
 		{
@@ -91,6 +142,7 @@ class Companies extends CI_Controller {
 		$this->form_validation->set_rules('streetline1', 'Streetline1', 'required|xss_clean');
 		$this->form_validation->set_rules('streetline2', 'Streetline2', 'xss_clean');
 
+
 		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean');
 		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
 		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
@@ -111,7 +163,7 @@ class Companies extends CI_Controller {
 			
 		}
 		else {
-			$this->companies_model->set_companies(0);
+			$this->companies_model->set_companies(0, $filename);
 			$this->load->view('templates/header', $data);	
 			$this->load->view('templates/custom.css.php',$data);
 			$this->load->view('templates/pagehead');
