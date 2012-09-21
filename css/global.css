@@ -29,6 +29,11 @@ div#header_content_holder {
 }
 
 
+#slogan {
+color: white;
+font-size: 1.3em;
+} 
+
 
 #header_background {
 	height: 190px;
@@ -97,7 +102,7 @@ div#main {
 	margin-right: 10px;
     padding: 0;
 	min-height: 300px;
-	width: 650px;
+	width: 680px;
 }
 
 div#sidebar {
@@ -156,21 +161,20 @@ div#shortcut_right {
 }
 
 div.list_entry {
-	margin-top 0;
 	margin-bottom: 10px;
-	padding-top: 15px;
+	padding-top: 20px;
 	padding-bottom: 15px;
-	width: 650px;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	background-color: #f6f6f6;
-	padding-right: 40px;
+	width: 680px;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	background-color: #F6F6F6;
+	padding-right: 20px;
 }
 
 div.list_image {
 	float: left;
 	margin-right: 5px;
-	padding: 0;
+	padding: 0 15px 0 15px;
 	width: 135px;
 	min-height: 50px;
 }

@@ -18,7 +18,7 @@ website
 <?php foreach ($companies as $companies_item): ?>
 				 <!--List-Entry Start <?php echo $companies_item['company_id'] ?> -->
                     <div class="list_entry" id="cid_<?php echo $companies_item['company_id'] ?>">
-                    	<div class="list_image"></div>
+                    	<div class="list_image"><?php if($companies_item['thumb'] != "") { ?> <img width="135" src="/uploads/<?php echo $companies_item['thumb']; ?>" /><?php } echo ""; ?></div>
                         <div class="list_text_holder">
                         	<div class="list_title"><?php echo $companies_item['name'] ?></div>
                             <div class="list_left_text"><!-- <a href="/index.php/companies/<?php echo $companies_item['company_id'] ?>">Details</a> -->

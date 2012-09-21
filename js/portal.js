@@ -34,12 +34,12 @@ $(document).ready(function(){
 						//alert(item)
 						
 	                    var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
-                    	res += '<div class="list_image"></div>';
+                    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
                         res += '<div class="list_text_holder">';
                     	res += '<div class="list_title">'+item.name+'</div>';
                         res += '<div class="list_left_text">';
                         res += item.streetline1;
-                        res += (item.streetline2 != "" ?  item.streetline2+"<br />": "");       
+                        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
                         res += item.zip+" "+item.city+'<br /><br />';
                         res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
                         res += '<div class="list_right_text_holder">';

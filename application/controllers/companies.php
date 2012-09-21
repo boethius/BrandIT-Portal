@@ -70,10 +70,10 @@ class Companies extends CI_Controller {
 			
 			$data['i18n'] = $this->i18n_model;
 			$data["error"] = array('error' => $this->upload->display_errors());
-			echo '<pre>';
+			/*echo '<pre>';
 			print_r($data);
 			echo '</pre>';
-			$this->load->view('companies/create', $data);
+			$this->load->view('companies/create', $data);*/
 		}
 		else
 		{
@@ -101,7 +101,7 @@ class Companies extends CI_Controller {
 			
 			
 			$data['error'] = $this->file_model->resizeImage($datatype ,$filename,$image_widht, $image_height);
-			
+			/*
 			
 			echo '---------------------';
 			echo '<pre>';
@@ -109,7 +109,7 @@ class Companies extends CI_Controller {
 			echo '</pre>';
 			
 			
-			$this->load->view('companies/create', $data);
+			$this->load->view('companies/create', $data);*/
 		}
 		
 		
@@ -118,20 +118,24 @@ class Companies extends CI_Controller {
 			
 			$data['i18n'] = $this->i18n_model;
 			$data["error"] = array('error' => $this->upload->display_errors());
-			echo '<pre>';
+			/*
+echo '<pre>';
 			print_r($data);
 			echo '</pre>';
 			$this->load->view('companies/create', $data);
+*/
 		}
 		else
 		{
 			
 			$data["image"] = array('upload_data' => $this->upload->data());
 			
-			echo '<pre>';
+			/*
+echo '<pre>';
 			print_r($data);
 			echo '</pre>';
-			$this->load->view('companies/create', $data);
+			$this->load->view('companies/create', $data)
+;*/
 		}
 		
 		

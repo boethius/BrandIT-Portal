@@ -31,12 +31,12 @@ if ( ! function_exists('get_portal_id')){
         	$id = $row['portal_id'];
         }
         else {
-	        $id = 0;
+	        $id = 2;
         }
        
         
         if(sizeof($row) == 0){
-        	$id = 0;
+        	$id = 2;
         }
         
         return $id;
