@@ -8,8 +8,8 @@ class Companies extends CI_Controller {
 		$this->load->model('region_model');
 		$this->load->model('i18n_model');
 
-		$this->load->model('file_model');
 
+		$this->load->model('file_model');
 	}
 
 	public function index()
@@ -70,6 +70,7 @@ class Companies extends CI_Controller {
 			
 			$data['i18n'] = $this->i18n_model;
 			$data["error"] = array('error' => $this->upload->display_errors());
+
 			/*echo '<pre>';
 			print_r($data);
 			echo '</pre>';
@@ -101,14 +102,9 @@ class Companies extends CI_Controller {
 			
 			
 			$data['error'] = $this->file_model->resizeImage($datatype ,$filename,$image_widht, $image_height);
-			/*
+
 			
-			echo '---------------------';
-			echo '<pre>';
-			print_r($data);
-			echo '</pre>';
-			
-			
+
 			$this->load->view('companies/create', $data);*/
 		}
 		
@@ -129,13 +125,8 @@ echo '<pre>';
 		{
 			
 			$data["image"] = array('upload_data' => $this->upload->data());
-			
-			/*
-echo '<pre>';
-			print_r($data);
-			echo '</pre>';
-			$this->load->view('companies/create', $data)
-;*/
+			$this->load->view('companies/create', $data);
+
 		}
 		
 		
@@ -146,7 +137,6 @@ echo '<pre>';
 		$this->form_validation->set_rules('streetline1', 'Streetline1', 'required|xss_clean');
 		$this->form_validation->set_rules('streetline2', 'Streetline2', 'xss_clean');
 
-
 		$this->form_validation->set_rules('zip', 'Zip', 'required|xss_clean');
 		$this->form_validation->set_rules('city', 'City', 'required|xss_clean');
 		$this->form_validation->set_rules('telefon', 'Telefon', 'required|xss_clean|numeric');
@@ -156,7 +146,6 @@ echo '<pre>';
 		$this->form_validation->set_rules('website', 'Website', 'xss_clean|prep_url');
 		$this->form_validation->set_rules('tags', 'Tags', 'required|xss_clean');
 		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
-
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('templates/header', $data);	

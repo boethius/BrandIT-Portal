@@ -60,7 +60,6 @@ class Companies_model extends CI_Model {
 
 
 	public function set_companies($company_id, $filename = "")
-
 	{
 		log_message('debug', "company_id {$company_id}"); 
 		$this->load->helper('url');
