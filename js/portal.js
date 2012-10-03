@@ -1,6 +1,12 @@
 var originalSearch = "";
 
 
+var map;
+var markers = new Array();
+var locations = new Array();
+var nolocations = new Array();
+var customIndex = 0;
+var bounds = new google.maps.LatLngBounds();
 	//how much items per page to show
 	var show_per_page = 5;
 	//getting the amount of elements inside main div
@@ -12,10 +18,51 @@ var originalSearch = "";
 	
 	var new_page = 0;
 	
+function initialize() {
+
+	var mapOptions = {
+	  zoom: 6,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+      minZoom: 2,
+      maxZoom: 17
+	};
+	map = new google.maps.Map(document.getElementById('map_canvas'),
+	    mapOptions);
+	
+	
+	// Try HTML5 geolocation
+	if(navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(function(position) {
+	    var pos = new google.maps.LatLng(position.coords.latitude,
+	                                     position.coords.longitude);
+	                                     
+	    var infowindow = new google.maps.InfoWindow({
+	      map: map,
+	      position: pos,
+	      content: 'You are here.'
+	    });
+	    
+	    //map.fitBounds(bounds);
+	   // bounds = new google.maps.LatLngBounds(pos,pos);
+	   
+	  }, function() { 
+	    handleNoGeolocation(true);
+	  });
+	} else {
+	    var pos = new google.maps.LatLng(60, 105);
+	   // bounds = new google.maps.LatLngBounds(pos,pos);
+	  // Browser doesn't support Geolocation
+	  handleNoGeolocation(false);
+	}
+}
+	
+	
+	
 $(document).ready(function(){
+initialize();
 
 	originalSearch = $('#main').html();
-
+	resetSearch();
 	$('#searchBar').autocomplete({
 		close: function(event, ui){
 			resetSearch();
@@ -27,50 +74,70 @@ $(document).ready(function(){
 				data: {region: $('#regions').val()},
 				type: "POST",
 				success: function(data){
+					console.log("lalal");
 					resetSearch();
-						//originalSearch = $('#main').html();
+					console.log("lalal2");
+		//originalSearch = $('#main').html();
 					$('#main').html((data.length > 0?"":"Kein resultat"));
+					console.log("lalal3");
 					response( $.map( data, function( item ) {
-						//alert(item)
-						
-	                    var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
-                    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
-                        res += '<div class="list_text_holder">';
-                    	res += '<div class="list_title">'+item.name+'</div>';
-                        res += '<div class="list_left_text">';
-                        res += item.streetline1;
-                        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
-                        res += item.zip+" "+item.city+'<br /><br />';
-                        res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
-                        res += '<div class="list_right_text_holder">';
-                    	res += '<div class="list_right_text_top"></div>';
-                        res += '<div class="list_right_text_center">'+item.description+'</div>';
-                        res += '<div class="list_right_text_bottom"></div>';
-                        res += '<div class="clear"></div>';
-                        res += '</div>';
-                        res += '<div class="clear"></div>';
-                        res += '</div>';
-                        res += '<div class="google_maps"></div>';
-                        res += '<div class="clear"></div>';
-                        res += '</div>';
-                        
-						/*
-var res = '<div class="companyItem" id="cid_'+item.company_id+'">';
-						   res += '<div class="companyTitle">'+item.name+'</div>';
-						   res += '<div class="companyDesc">'+item.description+'</div>';
-						   res += '<div class="companyCtrl"><a href="/index.php/companies/'+item.company_id+'">View company</a></div>';
-						   res += '</div>';
-			
-*/
-						$('#main').append(res);
-						return {
-							label: item.name,
-							value: item.name
+		//alert(item)
+		
+			        var lat = item.lat;
+			        var lng = item.long;
+			        console.log(lat);
+			         if(lng != "NotFound" && lng != ""){
+						//bounds.extend( pos );
+			            var pos = new google.maps.LatLng( lat, lng ) ;
+						//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
+						//markers[item.id].setZIndex(1000-customIndex);
+						bounds.extend(pos);
+					
+						if(!locations[item.id]){
+							locations[item.id] = {
+								map: map,
+								position: pos,
+								title: item.name//,
+							//	index: #index#,
+							//	icon: '#listeddocicon#'
+							};		
 						}
+						else{
+							
+						}
+					}
+			        var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
+			    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
+			        res += '<div class="list_text_holder">';
+			    	res += '<div class="list_title">'+item.name+'</div>';
+			        res += '<div class="list_left_text">';
+			        res += item.streetline1;
+			        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
+			        res += item.zip+" "+item.city+'<br /><br />';
+			        res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
+			        res += '<div class="list_right_text_holder">';
+			    	res += '<div class="list_right_text_top"></div>';
+			        res += '<div class="list_right_text_center">'+item.description+'</div>';
+			        res += '<div class="list_right_text_bottom"></div>';
+			        res += '<div class="clear"></div>';
+			        res += '</div>';
+			        res += '<div class="clear"></div>';
+			        res += '</div>';
+			        res += '<div class="google_maps"></div>';
+			        res += '<div class="clear"></div>';
+			        res += '</div>';
+			        
+					$('#main').append(res);
+					console.log("lalal int");
+					return {
+						label: item.name,
+						value: item.name
+		
+					} 
 					}));
-					paginate();
+					console.log("lalal4");
 				}
-			});
+			});	
 		},
 		select: function (event, ui){
 			//alert(ui.item.value);
@@ -88,12 +155,91 @@ var res = '<div class="companyItem" id="cid_'+item.company_id+'">';
 	
 	paginate();
 	
-
+	$.ajax({
+		url: "/index.php/search/"+"noop",
+		dataType: "json",
+		data: {region: $('#regions').val(), random: true},
+		type: "POST",
+		success: listit
+	});
 	
 	
 });
 
+
+
+
+
+function listit(data){
+	return $.map( data, function( item ) {
+		//alert(item)
+		
+        var lat = item.lat;
+        var lng = item.long;
+        console.log(lat);
+         if(lng != "NotFound" && lng != ""){
+			//bounds.extend( pos );
+            var pos = new google.maps.LatLng( lat, lng ) ;
+			//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
+			//markers[item.id].setZIndex(1000-customIndex);
+			bounds.extend(pos);
+		
+			if(!locations[item.id]){
+				locations[item.id] = {
+					map: map,
+					position: pos,
+					title: item.name//,
+				//	index: #index#,
+				//	icon: '#listeddocicon#'
+				};		
+			}
+			else{
+				
+			}
+		}
+        var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
+    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
+        res += '<div class="list_text_holder">';
+    	res += '<div class="list_title">'+item.name+'</div>';
+        res += '<div class="list_left_text">';
+        res += item.streetline1;
+        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
+        res += item.zip+" "+item.city+'<br /><br />';
+        res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
+        res += '<div class="list_right_text_holder">';
+    	res += '<div class="list_right_text_top"></div>';
+        res += '<div class="list_right_text_center">'+item.description+'</div>';
+        res += '<div class="list_right_text_bottom"></div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        res += '<div class="google_maps"></div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        
+		/*
+var res = '<div class="companyItem" id="cid_'+item.company_id+'">';
+		   res += '<div class="companyTitle">'+item.name+'</div>';
+		   res += '<div class="companyDesc">'+item.description+'</div>';
+		   res += '<div class="companyCtrl"><a href="/index.php/companies/'+item.company_id+'">View company</a></div>';
+		   res += '</div>';
+
+*/
+		$('#main').append(res);
+		return {
+			label: item.name,
+			value: item.name
+		}
+	});
+	
+	
+}
+
+
 function paginate(){
+
+	map.fitBounds(bounds);
 	new_page = 0;
 	current_link = 0;
 	number_of_items = $('#main').children().size();

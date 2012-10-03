@@ -19,8 +19,10 @@
         <!--Link-Data Ende-->
         
         <!--Script-Data Start-->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
 		<script src="<?php base_url() ?>/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
-		<script src="<?php base_url() ?>/js/portal.js" type="text/javascript"></script>
+		
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCCP3xJtQDlK2-UvWZrHEv4VpcHZvabZCQ&sensor=true"></script>
+		<script type="text/javascript" src="<?php base_url() ?>/js/portal.js"></script>
         <!--Script-Data End-->
     <!-- css style start -->
