@@ -11,12 +11,12 @@ class File_model extends CI_Model {
 		$file_type = $datatype;
 		$prefix = "./uploads/";
 		
-		
+		/*
 		echo '--------------------- file_model 1';
 		echo '<pre>';
 		print_r($file_type);
 		echo '</pre>';
-			
+		*/
 		
 		if(!$file_type || $file_type != "image"){
 			

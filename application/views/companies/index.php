@@ -9,6 +9,22 @@ website
 <a href="/index.php/companies/create/">Create new company</a>
 
             <!--Content Start-->
+            
+<script type="text/javascript">
+
+
+
+</script>
+<style type="text/css">
+#map_canvas {
+	
+	width: 270px;
+	height: 500px;
+	display: absolute !important;
+	
+}
+</style>
+            
   <div id="content">
                 <div id="infobar"></div>
                 	
@@ -41,9 +57,10 @@ website
                     <!--List-Entry End-->
 <?php endforeach ?>
         </div>
+        
+        <div id="sidebar"><div id="map_canvas"></div></div>
                                 <div class="clear"></div>
 <div id='page_navigation'></div>  
-        <div id="sidebar"></div>
         
 <?php 
 /*

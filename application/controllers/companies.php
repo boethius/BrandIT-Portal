@@ -65,6 +65,7 @@ class Companies extends CI_Controller {
 		$data['i18n'] = $this->i18n_model;
 		$data['file_model'] = $this->file_model;
 		
+		$this->load->view('templates/header', $data);
 		if(  ! $this->upload->do_upload())
 		{
 			
@@ -105,8 +106,8 @@ class Companies extends CI_Controller {
 
 			
 
-			$this->load->view('companies/create', $data);*/
-		}
+			//$this->load->view('companies/create', $data);		
+			}
 		
 		
 		if(  ! $this->upload->do_upload())
@@ -125,7 +126,7 @@ echo '<pre>';
 		{
 			
 			$data["image"] = array('upload_data' => $this->upload->data());
-			$this->load->view('companies/create', $data);
+			//$this->load->view('companies/create', $data);
 
 		}
 		
