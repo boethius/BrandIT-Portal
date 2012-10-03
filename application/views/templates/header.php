@@ -15,12 +15,12 @@
         <!--Link-Data Start-->
         <link href="<?php base_url() ?>/css/global.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="<?php base_url() ?>/css/ui-darkness/jquery-ui-1.8.21.custom.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="<?php base_url() ?>/css/ui-lightness/jquery-ui-1.8.24.custom.css" media="all" />
         <!--Link-Data Ende-->
         
         <!--Script-Data Start-->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
-		<script src="<?php base_url() ?>/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+		<script src="<?php base_url() ?>/js/jquery-ui-1.8.24.custom.min.js" type="text/javascript"></script>
 		
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCCP3xJtQDlK2-UvWZrHEv4VpcHZvabZCQ&sensor=true"></script>
 		<script type="text/javascript" src="<?php base_url() ?>/js/portal.js"></script>
