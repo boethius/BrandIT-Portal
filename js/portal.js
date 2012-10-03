@@ -6,6 +6,7 @@ var markers = new Array();
 var locations = new Array();
 var nolocations = new Array();
 var customIndex = 0;
+var savedMap = new Array();
 var bounds = new google.maps.LatLngBounds();
 	//how much items per page to show
 	var show_per_page = 5;
@@ -39,7 +40,7 @@ function initialize() {
 	    var infowindow = new google.maps.InfoWindow({
 	      map: map,
 	      position: pos,
-	      content: 'You are here.'
+	      content: 'Sie sind hier.'
 	    });
 	    
 	    //map.fitBounds(bounds);
@@ -56,12 +57,16 @@ function initialize() {
 	}
 }
 	
-	
+
+function clearOverlays() {
+  for (var i in markers){
+    markers[i].setMap(null);
+  }
+}	
 	
 $(document).ready(function(){
 initialize();
 
-	originalSearch = $('#main').html();
 	resetSearch();
 	$('#searchBar').autocomplete({
 		close: function(event, ui){
@@ -74,11 +79,8 @@ initialize();
 				data: {region: $('#regions').val()},
 				type: "POST",
 				success: function(data){
-					resetSearch();
-		//originalSearch = $('#main').html();
-					$('#main').html((data.length > 0?"":"Kein resultat"));
 					response( listit(data) );
-				
+					if(data.length > 0) map.fitBounds(bounds);
 				}
 			});	
 		},
@@ -103,7 +105,11 @@ initialize();
 		dataType: "json",
 		data: {region: $('#regions').val(), random: true},
 		type: "POST",
-		success: listit
+		success: function(data) {
+			listit(data);
+			if(data.length > 0) map.fitBounds(bounds);
+			originalSearch = $('#main').html();
+		}
 	});
 	
 	
@@ -114,59 +120,71 @@ initialize();
 
 
 function listit(data){
+	resetSearch();
+	//clearOverlays();
+	
+	savedMap = new Array();
+	//originalSearch = $('#main').html();
+	$('#main').html((data.length > 0?"":"Kein resultat"));
+		bounds = new google.maps.LatLngBounds();
 	return $.map( data, function( item ) {
 		//alert(item)
-		
-			        var lat = item.lat;
-			        var lng = item.long;
-			         if(lng != "NotFound" && lng != ""){
-						//bounds.extend( pos );
-			            var pos = new google.maps.LatLng( lat, lng ) ;
-						//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
-						//markers[item.id].setZIndex(1000-customIndex);
-						bounds.extend(pos);
-						console.log(item.company_id);
-						if(!locations[item.company_id]){
-							locations[item.company_id] = {
-								map: map,
-								position: pos,
-								title: item.name//,
-							//	index: #index#,
-							//	icon: '#listeddocicon#'
-							};		
-						}
-						else{
-							
-						}
-						markers[item.company_id] = new google.maps.Marker(locations[item.company_id]);
-					}
-			        var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
-			    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
-			        res += '<div class="list_text_holder">';
-			    	res += '<div class="list_title">'+item.name+'</div>';
-			        res += '<div class="list_left_text">';
-			        res += item.streetline1;
-			        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
-			        res += item.zip+" "+item.city+'<br /><br />';
-			        res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
-			        res += '<div class="list_right_text_holder">';
-			    	res += '<div class="list_right_text_top"></div>';
-			        res += '<div class="list_right_text_center">'+item.description+'</div>';
-			        res += '<div class="list_right_text_bottom"></div>';
-			        res += '<div class="clear"></div>';
-			        res += '</div>';
-			        res += '<div class="clear"></div>';
-			        res += '</div>';
-			        res += '<div class="google_maps"></div>';
-			        res += '<div class="clear"></div>';
-			        res += '</div>';
-			        
-					$('#main').append(res);
-					return {
-						label: item.name,
-						value: item.name
-		
-					} 
+        var lat = item.lat;
+        var lng = item.long;
+         if(lng != "NotFound" && lng != ""){
+			//bounds.extend( pos );
+            var pos = new google.maps.LatLng( lat, lng ) ;
+			//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
+			//markers[item.id].setZIndex(1000-customIndex);
+			bounds.extend(pos);
+			console.log(item.company_id);
+			if(!locations[item.company_id]){
+				locations[item.company_id] = {
+					map: map,
+					position: pos,
+					title: item.name//,
+				//	index: #index#,
+				//	icon: '#listeddocicon#'
+				};		
+			}
+			else{
+				
+			}
+			markers[item.company_id] = new google.maps.Marker(locations[item.company_id]);
+			savedMap[item.company_id] = markers[item.company_id];
+		}
+        var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
+    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
+        res += '<div class="list_text_holder">';
+    	res += '<div class="list_title">'+item.name+'</div>';
+        res += '<div class="list_left_text"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">';
+        res += item.streetline1;
+        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
+        res += item.zip+" "+item.city+'</a><br /><br />';
+        res += '<a href="'+item.website+'" target="_blank">Website</a><br />';
+        res += '<a href="'+item.email+'" target="_blank">E-Mail</a></div>';
+        res += '<div class="list_right_text_holder">';
+    	res += '<div class="list_right_text_top"></div>';
+        res += '<div class="list_right_text_center">'+item.description+'</div>';
+        res += '<div class="list_right_text_bottom"></div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        var cleanTags = $.map(item.tags.split(","), function( text ){
+        	return " "+$.trim(text).toLowerCase();
+        });
+        res += '<div class="tags"><strong>Schlagwörter:</strong> '+cleanTags+'</div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        res += '<div class="google_maps"></div>';
+        res += '<div class="clear"></div>';
+        res += '</div>';
+        
+		$('#main').append(res);
+		return {
+			label: item.name,
+			value: item.name
+
+		} 
 	});
 	
 	
@@ -174,8 +192,7 @@ function listit(data){
 
 
 function paginate(){
-
-	map.fitBounds(bounds);
+	
 	new_page = 0;
 	current_link = 0;
 	number_of_items = $('#main').children().size();
@@ -211,6 +228,18 @@ function paginate(){
 }
 
 function resetSearch(){
+
+	/*
+bounds = new google.maps.LatLngBounds();
+	 for (var i in savedMap){
+	 	console.log("saved:"+i);
+	    savedMap[i].setMap(map);
+	    var pos = new google.maps.LatLng( locations[i].pos ) ;
+	    bounds.extend(pos);
+	  }
+	 
+*/
+//map.fitBounds(bounds);
 	if($('#searchBar').val() == "" || $('#main').html() == "Kein resultat"){
 		//alert("orig search");
 		$('#main').html(originalSearch);

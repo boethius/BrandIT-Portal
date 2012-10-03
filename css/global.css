@@ -282,3 +282,8 @@ div.list_left_text ul {
 	padding-left: 0px;
 }
 
+.tags {
+margin-top: 10px;
+float: left;
+font-size: 0.8em;
+}
