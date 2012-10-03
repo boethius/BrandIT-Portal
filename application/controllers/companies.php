@@ -20,8 +20,8 @@ class Companies extends CI_Controller {
 		$data['i18n'] = $this->i18n_model;
 		$data['title'] = 'Companies';
 	
+
 		
-	
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/custom.css.php',$data);
 		$this->load->view('templates/search');
@@ -105,7 +105,7 @@ class Companies extends CI_Controller {
 
 			
 
-			$this->load->view('companies/create', $data);*/
+			$this->load->view('companies/create', $data);
 		}
 		
 		

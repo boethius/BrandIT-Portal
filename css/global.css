@@ -268,3 +268,16 @@ float: left;
 width: 120px;
 }
 
+
+div.list_left_text ul li, div.list_left_text a {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 142px !important;
+}
+
+div.list_left_text ul {
+margin-left: 0px;	
+padding-left: 0px;
+}
+}

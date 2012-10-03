@@ -27,16 +27,21 @@ class File_model extends CI_Model {
 		$this->load->library('image_lib');
 		
 		$target_width = 135;
-		$target_height = 95;
+		$target_height = 135;
 		
 		$current_ratio = $image_width / $image_height;
 		$target_ratio =  $target_width/$target_height;
 		$config['source_image'] = $prefix.$filename;
 		
+		$config['maintain_ratio'] = True;
+		
+		
 		if($current_ratio > $target_ratio){
 			
-			$config['height'] = $target_height;
-			$config['width'] = $target_height * $current_ratio;
+			//$config['height'] = $target_height;
+			//$config['width'] = $target_height * $current_ratio;
+			$config['width'] = $target_width;
+			
 			$this->image_lib->initialize($config);
 			
 			if(!$this->image_lib->resize()){
@@ -44,7 +49,7 @@ class File_model extends CI_Model {
 			}
 			
 			$config['width'] = $target_width;
-			$config['maintain_ratio'] = false;
+			
 			$this->image_lib->initialize($config);
 			
 			if($this->image_lib->crop()){
@@ -57,7 +62,8 @@ class File_model extends CI_Model {
 		}else{
 			
 			$config['width'] = $target_width;
-			$config['height'] = $target_height;
+			//$config['height'] = $target_height;
+			
 			$this->image_lib->initialize($config);
 			
 			if($this->image_lib->resize()){
