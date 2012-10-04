@@ -177,7 +177,7 @@ function listit(data){
         res += '</div>';
         res += '<div class="google_maps"></div>';
         res += '<div class="clear"></div>';
-        res += '</div>';
+        res += '</div>'; 
         
 		$('#main').append(res);
 		return {
