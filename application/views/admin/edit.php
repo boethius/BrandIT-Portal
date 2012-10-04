@@ -1,10 +1,10 @@
-<h2>Edit Company</h2>
+><h2>Edit Company</h2>
 
 <?php echo validation_errors(); ?>
 
 <?php echo $companies_item['company_id']; ?>
 
-<?php echo form_open('admin/edit/'.$companies_item['company_id']) ?>
+<?php echo  form_open_multipart('admin/edit/'.$companies_item['company_id']) ?>
 
 
 <ul class="register">
@@ -31,13 +31,16 @@
   <li><label for="tags">tags</label>
 <input type="input" name="tags" value="<?php echo $companies_item['tags'] ?>" id="tags" /></li>
   <li><label for="lat">lat</label>
-<input type="input" name="lat" value="<?php echo $companies_item['tags'] ?>" id="lat" /></li>
+<input type="input" name="lat" value="<?php echo $companies_item['lat'] ?>" id="lat" /></li>
   <li><label for="long">long</label>
-<input type="input" name="long" value="<?php echo $companies_item['tags'] ?>" id="long" /></li>
+<input type="input" name="long" value="<?php echo $companies_item['long'] ?>" id="long" /></li>
   <li><label for="description">description</label>
 <textarea name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
   <li><label for="active">active</label>
 <input type="checkbox" value="1" name="active"<?php if($companies_item['active']) echo 'checked="checked"';  ?> /></li>
+<li><label for="image">Image</label>
+	<input type="file" name="userfile" value="" /><?php if($companies_item['thumb'] != "") { ?> <img width="135" src="/uploads/<?php echo $companies_item['thumb']; ?>" /><?php } echo ""; ?>
+</li>
 </ul>
 <input type="button" name="back" onclick="location.href='/index.php/admin/'" value="Back" />
 <input type="submit" name="submit" value="Edit" id="submit" value="Create companies item" /> 
