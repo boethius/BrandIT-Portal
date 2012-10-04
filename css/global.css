@@ -65,7 +65,7 @@ div#logo {
 div#slogan {
 	float: left;
 	padding: 0;
-	margin-top: 60px;
+	margin-top: 25px;
 	height: 40px;
 	width: 980px;
 }
@@ -73,7 +73,7 @@ div#slogan {
 div#search {
 	float: left;
 	padding: 0;
-	margin-top: 10px;
+	margin-top: 50px;
 	height: 100px;
 	width: 980px;
 }

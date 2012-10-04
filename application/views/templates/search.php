@@ -5,7 +5,7 @@
             	
                 <div id="header_content_holder">
                     <div id="logo"></div>
-                    <div id="slogan"><?=$portal['name'];?></div>
+                    <div id="slogan"><img src="/images/<?=$portal['name'];?>_logo.png" alt="<?=$portal['name'];?>" /></div>
                     <div id="search">
                     <select name="regions" id="regions">
                     	<option value=""><?=$i18n->get_value("allregions")?></option>
