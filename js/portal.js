@@ -6,10 +6,7 @@ var markers = new Array();
 var locations = new Array();
 var nolocations = new Array();
 var customIndex = 0;
-<<<<<<< HEAD
-=======
-var savedMap = new Array();
->>>>>>> Develop
+
 var bounds = new google.maps.LatLngBounds();
 	//how much items per page to show
 	var show_per_page = 5;
@@ -23,8 +20,6 @@ var bounds = new google.maps.LatLngBounds();
 	var new_page = 0;
 	
 function initialize() {
-<<<<<<< HEAD
-
 	var mapOptions = {
 	  zoom: 6,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -67,55 +62,7 @@ $(document).ready(function(){
 initialize();
 
 	originalSearch = $('#main').html();
-=======
 
-	var mapOptions = {
-	  zoom: 6,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-      minZoom: 2,
-      maxZoom: 17
-	};
-	map = new google.maps.Map(document.getElementById('map_canvas'),
-	    mapOptions);
-	
-	
-	// Try HTML5 geolocation
-	if(navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(function(position) {
-	    var pos = new google.maps.LatLng(position.coords.latitude,
-	                                     position.coords.longitude);
-	                                     
-	    var infowindow = new google.maps.InfoWindow({
-	      map: map,
-	      position: pos,
-	      content: 'Sie sind hier.'
-	    });
-	    
-	    //map.fitBounds(bounds);
-	   // bounds = new google.maps.LatLngBounds(pos,pos);
-	   
-	  }, function() { 
-	    handleNoGeolocation(true);
-	  });
-	} else {
-	    var pos = new google.maps.LatLng(60, 105);
-	   // bounds = new google.maps.LatLngBounds(pos,pos);
-	  // Browser doesn't support Geolocation
-	  handleNoGeolocation(false);
-	}
-}
-	
-
-function clearOverlays() {
-  for (var i in markers){
-    markers[i].setMap(null);
-  }
-}	
-	
-$(document).ready(function(){
-initialize();
-
->>>>>>> Develop
 	resetSearch();
 	$('#searchBar').autocomplete({
 		close: function(event, ui){
@@ -128,16 +75,12 @@ initialize();
 				data: {region: $('#regions').val()},
 				type: "POST",
 				success: function(data){
-<<<<<<< HEAD
+
 					resetSearch();
 		//originalSearch = $('#main').html();
 					$('#main').html((data.length > 0?"":"Kein resultat"));
 					response( listit(data) );
-				
-=======
-					response( listit(data) );
-					if(data.length > 0) map.fitBounds(bounds);
->>>>>>> Develop
+
 				}
 			});	
 		},
@@ -162,15 +105,11 @@ initialize();
 		dataType: "json",
 		data: {region: $('#regions').val(), random: true},
 		type: "POST",
-<<<<<<< HEAD
-		success: listit
-=======
 		success: function(data) {
 			listit(data);
 			if(data.length > 0) map.fitBounds(bounds);
 			originalSearch = $('#main').html();
 		}
->>>>>>> Develop
 	});
 	
 	
@@ -181,7 +120,6 @@ initialize();
 
 
 function listit(data){
-<<<<<<< HEAD
 	return $.map( data, function( item ) {
 		//alert(item)
 		
@@ -235,73 +173,7 @@ function listit(data){
 						value: item.name
 		
 					} 
-=======
-	resetSearch();
-	//clearOverlays();
-	
-	savedMap = new Array();
-	//originalSearch = $('#main').html();
-	$('#main').html((data.length > 0?"":"Kein resultat"));
-		bounds = new google.maps.LatLngBounds();
-	return $.map( data, function( item ) {
-		//alert(item)
-        var lat = item.lat;
-        var lng = item.long;
-         if(lng != "NotFound" && lng != ""){
-			//bounds.extend( pos );
-            var pos = new google.maps.LatLng( lat, lng ) ;
-			//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
-			//markers[item.id].setZIndex(1000-customIndex);
-			bounds.extend(pos);
-			console.log(item.company_id);
-			if(!locations[item.company_id]){
-				locations[item.company_id] = {
-					map: map,
-					position: pos,
-					title: item.name//,
-				//	index: #index#,
-				//	icon: '#listeddocicon#'
-				};		
-			}
-			else{
-				
-			}
-			markers[item.company_id] = new google.maps.Marker(locations[item.company_id]);
-			savedMap[item.company_id] = markers[item.company_id];
-		}
-        var res = '<div class="list_entry" id="cid_'+item.company_id+'">';
-    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
-        res += '<div class="list_text_holder">';
-    	res += '<div class="list_title">'+item.name+'</div>';
-        res += '<div class="list_left_text"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">';
-        res += item.streetline1;
-        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
-        res += item.zip+" "+item.city+'</a><br /><br />';
-        res += '<a href="'+item.website+'" target="_blank">Website</a><br />';
-        res += '<a href="'+item.email+'" target="_blank">E-Mail</a></div>';
-        res += '<div class="list_right_text_holder">';
-    	res += '<div class="list_right_text_top"></div>';
-        res += '<div class="list_right_text_center">'+item.description+'</div>';
-        res += '<div class="list_right_text_bottom"></div>';
-        res += '<div class="clear"></div>';
-        res += '</div>';
-        var cleanTags = $.map(item.tags.split(","), function( text ){
-        	return " "+$.trim(text).toLowerCase();
-        });
-        res += '<div class="tags"><strong>Schlagwörter:</strong> '+cleanTags+'</div>';
-        res += '<div class="clear"></div>';
-        res += '</div>';
-        res += '<div class="google_maps"></div>';
-        res += '<div class="clear"></div>';
-        res += '</div>'; 
-        
-		$('#main').append(res);
-		return {
-			label: item.name,
-			value: item.name
 
-		} 
->>>>>>> Develop
 	});
 	
 	
@@ -309,12 +181,8 @@ function listit(data){
 
 
 function paginate(){
-<<<<<<< HEAD
 
 	map.fitBounds(bounds);
-=======
-	
->>>>>>> Develop
 	new_page = 0;
 	current_link = 0;
 	number_of_items = $('#main').children().size();
