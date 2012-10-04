@@ -2,7 +2,7 @@
 
   <div id="content">
 <h2>Firma registrieren</h2>
-
+<p>Geben Sie hier Ihre Kontaktdaten ein, einer unser Mitarbeiter wird die Daten in Kürze bearbeiten. Besten Dank </p>
 <!--<?php echo validation_errors(); ?>-->
 
 <?php echo form_open_multipart('companies/create'); ?>
@@ -22,7 +22,7 @@
 	<?php echo form_error('streetline1', '<div class="error">', '</div>'); ?>
   </li>
   <li>
-
+	<label for="streetline2"><?=$i18n->get_value("streetline2")?></label>
 	<input type="input" name="streetline2" value="<?php echo set_value('streetline2'); ?>" />
 	<?php echo form_error('streetline2', '<div class="error">', '</div>'); ?>
   </li>
@@ -86,7 +86,7 @@
 	<?php echo form_error('description', '<div class="error">', '</div>'); ?>
 </li>
 <li>
-	<label for="upload">Upload</label>	
+	<label for="upload">Firmen Logo</label>	
 	<input type="file" name="userfile" /> 
 </li>
 </ul>

@@ -82,11 +82,48 @@ div.clear {
 	clear:both;
 }
 
+div#admin_create {
+	width: 880px;
+	margin: 0 auto;
+	margin-top:162px;
+}
+
 div#content {
 	margin: 0 auto;
     padding: 0 0 20px;
 	min-height: 500px;
 	width: 980px;
+}
+
+div#content_admin {
+	width: 980px;
+	margin: 0 auto;
+	margin-top:162px;
+
+}
+
+div#edit_content {
+	width: 880px;
+	margin: 0 auto;
+	margin-top:162px;
+	
+}
+
+div#edit_content ul li{
+	list-style: none;
+	padding: 10px 0 ;	
+}
+
+div#view_content {
+	width: 880px;
+	margin: 0 auto;
+	margin-top:162px;
+	
+}
+
+div#view_content ul li{
+	list-style: none;
+	padding: 10px 0 ;	
 }
 
 div#infobar {

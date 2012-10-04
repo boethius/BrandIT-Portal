@@ -1,7 +1,4 @@
-<hr>
-<h4>Create New</h4>
-<p><a href="/index.php/companies/create/">Create new company</a></p>
-<hr>
+
 <script type="text/javascript ">
 	$(document).ready(function() {
     $('#admin_table').dataTable();
@@ -9,7 +6,11 @@
 	
 </script>
 
-<div class="content" style="width: 980px; margin: 0 auto;margin-top:80px;">
+<div id="content_admin" >
+	
+	<h2>Create New</h2>
+	<p><a href="/index.php/companies/create/">Create new company</a></p>
+	<hr>
 	<table width="900" id="admin_table">
 		<thead>
 			<tr>
@@ -20,19 +21,19 @@
 		<?php foreach ($companies as $companies_item): ?>
 		<tr>
 			<td>
-				<h2><?php echo $companies_item['name'] ?></h2>
+				<p><?php echo $companies_item['name'] ?></p>
 			</td>
 			<td>
-				<h4><p><?php echo ($companies_item['active']? "active":"not active"); ?></p></h4>
+				<p><?php echo ($companies_item['active']? "active":"not active"); ?></p>
 			</td>
 			<td>
-				<a href="/index.php/admin/<?php echo $companies_item['company_id'] ?>">View company</a>
+				<a href="/index.php/admin/<?php echo $companies_item['company_id'] ?>">View</a>
 			</td>
 			<td>
-				 <a href="/index.php/admin/edit/<?php echo $companies_item['company_id'] ?>">Edit company</a>
+				 <a href="/index.php/admin/edit/<?php echo $companies_item['company_id'] ?>">Edit</a>
 			</td>
 			<td>
-				<a href="/index.php/admin/delete/<?php echo $companies_item['company_id'] ?>">Delete company</a>
+				<a href="/index.php/admin/delete/<?php echo $companies_item['company_id'] ?>">Delete</a>
 			</td>
 		</tr>
 		    

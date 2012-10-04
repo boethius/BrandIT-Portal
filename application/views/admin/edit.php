@@ -1,13 +1,16 @@
-><h2>Edit Company</h2>
+<div id="edit_content">
+<h2>Edit Company</h2>
 
 <?php echo validation_errors(); ?>
 
-<?php echo $companies_item['company_id']; ?>
+
 
 <?php echo  form_open_multipart('admin/edit/'.$companies_item['company_id']) ?>
 
 
 <ul class="register">
+<div class="left" style="width: 400px; float: left;">
+	<li><label for="id">ID</label><?php echo $companies_item['company_id']; ?></li>
   <li><label for="name">name</label>
 <input type="input" name="name" value="<?php echo $companies_item['name'] ?>" id="name" /></li>
   <li><label for="streetline1">streetline1</label>
@@ -24,6 +27,9 @@
 <input type="input" name="telefax" value="<?php echo $companies_item['telefax'] ?>" id="telefax" /></li>
   <li><label for="mobile">mobile</label>
 <input type="input" name="mobile" value="<?php echo $companies_item['mobile'] ?>" id="mobile" /></li>
+
+</div>
+<div class="left" style="width: 400px; float: left;">
   <li><label for="email">email</label>
 <input type="input" name="email" value="<?php echo $companies_item['email'] ?>" id="email" /></li>
   <li><label for="website">website</label>
@@ -38,11 +44,13 @@
 <textarea name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
   <li><label for="active">active</label>
 <input type="checkbox" value="1" name="active"<?php if($companies_item['active']) echo 'checked="checked"';  ?> /></li>
-<li><label for="image">Image</label>
+<li><label for="userfile">Firmen Logo</label>
 	<input type="file" name="userfile" value="" /><?php if($companies_item['thumb'] != "") { ?> <img width="135" src="/uploads/<?php echo $companies_item['thumb']; ?>" /><?php } echo ""; ?>
 </li>
+</div>
 </ul>
 <input type="button" name="back" onclick="location.href='/index.php/admin/'" value="Back" />
 <input type="submit" name="submit" value="Edit" id="submit" value="Create companies item" /> 
 
 </form>
+</div>

@@ -6,12 +6,14 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('admin_model');
 	   $this->load->model('user_model','',TRUE);
+	   $this->load->model('companies_model');
+	   
 	}
 
 	public function index(){
 		
 		$this->load->library('form_validation');
-		
+		$data['portal'] = $this->companies_model->get_portal();
 		$data['output'] = "";
 		
 		if($this->session->userdata('logged_in') == 1){
@@ -85,9 +87,8 @@ class Admin extends CI_Controller {
 	public function edit($company_id){
 	
 		$data['companies_item'] = $this->admin_model->get_companies($company_id);
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		$data['portal'] = $this->companies_model->get_portal();
+		
 			if (empty($data['companies_item']))
 			{
 				show_404();
@@ -104,6 +105,7 @@ class Admin extends CI_Controller {
 		{
 			$this->load->view('templates/header', $data);	
 			$this->load->view('templates/custom.css.php',$data);
+			
 			$this->load->view('admin/edit', $data);
 			$this->load->view('templates/footer');
 			
@@ -129,7 +131,7 @@ class Admin extends CI_Controller {
 		
 		$this->admin_model->del_companies($company_id);
 		$data['output'] = "Deleted {$company_id}";
-		$this->load->view('companies/success', $data);
+		$this->load->view('admin/success', $data);
 	}
 	
 

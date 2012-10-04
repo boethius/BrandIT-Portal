@@ -45,9 +45,9 @@ class Admin_model extends CI_Model {
 			
 			
 			$data["error"] = array('error' => $this->upload->display_errors());
-			print_r($data['error']);
+			//print_r($data['error']);
 			$filename = "";
-			echo "no data in $filename";
+			//echo "no data in $filename";
 		}
 		else
 		{
@@ -91,7 +91,7 @@ class Admin_model extends CI_Model {
 			'active' => $this->input->post('active') == 1 ? 1 : 0,
 			'thumb' => $filename
 		);
-			echo "Into DB";
+			//echo "Into DB";
 		}else{
 			
 			$data = array(
@@ -113,7 +113,7 @@ class Admin_model extends CI_Model {
 			'portal_id' => get_portal_id(),
 			'active' => $this->input->post('active') == 1 ? 1 : 0
 		);
-			echo "not into db";
+			//echo "not into db";
 		}
 		/*
 		
