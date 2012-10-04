@@ -7,6 +7,9 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 	   $this->load->model('user_model','',TRUE);
 	   $this->load->model('companies_model');
+	   $this->load->model('i18n_model');
+	   $this->load->model('region_model');
+	  
 	   
 	}
 
@@ -61,9 +64,9 @@ class Admin extends CI_Controller {
 	public function create(){
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		
-
-		
+		$data['i18n'] = $this->i18n_model;
+		$data['regions'] = $this->region_model->get_regions();
+		$data['portal'] = $this->companies_model->get_portal();
 		$data['title'] = 'Create a company';
 		
 		$this->form_validation->set_rules('name', 'Name', 'required');

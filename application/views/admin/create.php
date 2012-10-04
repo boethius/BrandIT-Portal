@@ -91,7 +91,7 @@
 </li>
 </ul>
 
-<input type="button" name="back" onclick="location.href='/index.php/companies/'" value="<?=$i18n->get_value("back")?>" />
+<input type="button" name="back" onclick="location.href='/index.php/admin/'" value="<?=$i18n->get_value("back")?>" />
 	<input type="submit" name="submit" value="<?=$i18n->get_value("create")?>" /> 
 </form>
 
