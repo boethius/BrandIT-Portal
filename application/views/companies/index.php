@@ -41,7 +41,19 @@ website
                             	<?php echo $companies_item['streetline1'] ?>
                             	<?php if($companies_item['streetline2'] != "") echo '<br />'.$companies_item['streetline2'] ?><br />
                             	<?php echo $companies_item['zip'] ?> <?php echo $companies_item['city'] ?><br /><br />
-                            	<a href="<?php echo $companies_item['website'] ?>" target="_blank"><?php echo $companies_item['website'] ?></a>
+                            	<a href="<?php echo $companies_item['website'] ?>" target="_blank"><?php echo $companies_item['website'] ?></a><br />
+                            	<ul>
+                            	<?php 
+                            	$tags_ex = explode(",", $companies_item['tags'] );
+                            	//print_r($tags_ex);
+								?>
+								<?php foreach($tags_ex as $tags): ?>
+									
+									
+									<li><?php echo $tags?></li>
+								
+                            	<?php endforeach ?>
+                            	</ul>
                             </div>
                             <div class="list_right_text_holder">
                             	<div class="list_right_text_top"></div>
