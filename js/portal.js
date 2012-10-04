@@ -78,7 +78,7 @@ initialize();
 
 					resetSearch();
 		//originalSearch = $('#main').html();
-					$('#main').html((data.length > 0?"":"Kein resultat"));
+					$('#main').html((data.length > 0?"":"Kein Resultat"));
 					response( listit(data) );
 
 				}
@@ -121,7 +121,7 @@ initialize();
 
 function listit(data){
 	resetSearch();	
-	$('#main').html((data.length > 0?"":"Kein resultat"));
+	$('#main').html((data.length > 0?"":"Kein Resultat"));
 	return $.map( data, function( item ) {
 		//alert(item)
 		
@@ -152,10 +152,10 @@ function listit(data){
 			    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
 			        res += '<div class="list_text_holder">';
 			    	res += '<div class="list_title">'+item.name+'</div>';
-					res += '<div class="list_left_text"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">';
+					res += '<div class="list_left_text">';
 					res += item.streetline1;
 					res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
-					res += item.zip+" "+item.city+'</a><br /><br />';
+					res += item.zip+" "+item.city+'<br /><br />';
 			        res += '<a href="'+item.website+'" target="_blank">Website</a><br />';
 			        res += '<a href="mailto:'+item.email+'" target="_blank">E-Mail</a></div>';
 			        res += '<div class="list_right_text_holder">';
@@ -170,7 +170,7 @@ function listit(data){
 				    res += '<div class="tags"><strong>Schlagwörter:</strong> '+cleanTags+'</div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
-			        res += '<div class="google_maps"></div>';
+			        res += '<div class="google_maps"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">Auf der Karte anzeigen</a></div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
 			        
@@ -237,7 +237,7 @@ bounds = new google.maps.LatLngBounds();
 	 
 */
 //map.fitBounds(bounds);
-	if($('#searchBar').val() == "" || $('#main').html() == "Kein resultat"){
+	if($('#searchBar').val() == "" || $('#main').html() == "Kein Resultat"){
 		//alert("orig search");
 		$('#main').html(originalSearch);
 		paginate();
