@@ -19,10 +19,12 @@ class Companies extends CI_Controller {
 		$data['regions'] = $this->region_model->get_regions();
 		$data['i18n'] = $this->i18n_model;
 		$data['title'] = 'Companies';
-	
-
 		
+		//echo "<pre>";
+		//print_r($data['companies']);
+		//echo "</pre>";
 		$this->load->view('templates/header', $data);
+		$this->load->view('templates/home_scripts');
 		$this->load->view('templates/custom.css.php',$data);
 		$this->load->view('templates/search');
 		$this->load->view('companies/index', $data);
@@ -80,7 +82,6 @@ class Companies extends CI_Controller {
 		else
 		{
 			
-			
 			//Loding the Uploaded Image into $data
 			$data["image"] = $this->upload->data();
 			
@@ -98,20 +99,13 @@ class Companies extends CI_Controller {
 			
 			$datatype = $data_type[0];
 			
-						
-			
-			
-			
 			$data['error'] = $this->file_model->resizeImage($datatype ,$filename,$image_widht, $image_height);
 
-			
-
-
 			//$this->load->view('companies/create', $data);		
-			}
+		}
 		
 		
-		if(  ! $this->upload->do_upload())
+		/*if(  ! $this->upload->do_upload())
 		{
 			
 			$data['i18n'] = $this->i18n_model;
@@ -121,7 +115,7 @@ echo '<pre>';
 			print_r($data);
 			echo '</pre>';
 			$this->load->view('companies/create', $data);
-*/
+
 		}
 		else
 		{
@@ -130,7 +124,7 @@ echo '<pre>';
 			//$this->load->view('companies/create', $data);
 
 		}
-		
+		*/
 		
 		//This is the Form Validation 
 		//it checks the fields for xxs, e-mail validation ect.

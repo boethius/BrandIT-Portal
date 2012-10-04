@@ -1,0 +1,2 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCCP3xJtQDlK2-UvWZrHEv4VpcHZvabZCQ&sensor=true"></script>
+<script type="text/javascript" src="<?php base_url() ?>/js/portal.js"></script>
