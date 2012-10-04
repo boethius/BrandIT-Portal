@@ -18,6 +18,7 @@ class Search_model extends CI_Model {
 			$region = "";
 		}
 		
+		$ss = urldecode($ss);
 		if($this->input->post('random')){
 			//$this->db->where()
 			//$this->db->like('name',$query);
