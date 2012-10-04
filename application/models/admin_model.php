@@ -32,8 +32,69 @@ class Admin_model extends CI_Model {
 		log_message('debug', "company_id {$company_id}");
 		$this->load->helper('url');
 		$this->load->helper('domains');
+		$this->load->library('image_lib');
+		$this->load->model('file_model');
 		
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '0';
+		$this->load->library('upload', $config);
+		
+		if( $this->upload->data()!= "" && ! $this->upload->do_upload())
+		{
+			
+			
+			$data["error"] = array('error' => $this->upload->display_errors());
+			print_r($data['error']);
+			$filename = "";
+			echo "no data in $filename";
+		}
+		else
+		{
+			
+			//Loding the Uploaded Image into $data
+			$data["image"] = $this->upload->data();
+			
+			//extracting various information out of the $data
+			$imagetype = $data['image']['image_type'];
+			$filename = $data['image']['file_name'];
+			$filetype= $data['image']['file_type'];
+			$image_widht = $data['image']['image_width'];
+			$image_height = $data['image']['image_height'];
+			
+			//tearing the string appart
+			$data_type = explode("/", $filetype);
+			
+			$datatype = $data_type[0];
+			
+			$data['error'] = $this->file_model->resizeImage($datatype ,$filename,$image_widht, $image_height);
+		}
+		
+		if( $filename != ""){
 		$data = array(
+			'name' => $this->input->post('name'),
+			'streetline1' => $this->input->post('streetline1') ,
+			'streetline2' => $this->input->post('streetline2') ,
+			'zip' => $this->input->post('zip') ,
+			'city' => $this->input->post('city') ,
+			'telefon' => $this->input->post('telefon') ,
+			'telefax' => $this->input->post('telefax') ,
+			'mobile' => $this->input->post('mobile') ,
+			'email' => $this->input->post('email') ,
+			'website' => $this->input->post('website') ,
+			'tags' => $this->input->post('tags') ,
+			'lat' => $this->input->post('lat') ,
+			'long ' => $this->input->post('long') ,
+			'description' => $this->input->post('description'),
+			'billed' => $this->input->post('billed'), 
+			'portal_id' => get_portal_id(),
+			'active' => $this->input->post('active') == 1 ? 1 : 0,
+			'thumb' => $filename
+		);
+			echo "Into DB";
+		}else{
+			
+			$data = array(
 			'name' => $this->input->post('name'),
 			'streetline1' => $this->input->post('streetline1') ,
 			'streetline2' => $this->input->post('streetline2') ,
@@ -52,6 +113,8 @@ class Admin_model extends CI_Model {
 			'portal_id' => get_portal_id(),
 			'active' => $this->input->post('active') == 1 ? 1 : 0
 		);
+			echo "not into db";
+		}
 		/*
 		
 		,

@@ -85,7 +85,9 @@ class Admin extends CI_Controller {
 	public function edit($company_id){
 	
 		$data['companies_item'] = $this->admin_model->get_companies($company_id);
-	
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 			if (empty($data['companies_item']))
 			{
 				show_404();
