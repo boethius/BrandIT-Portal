@@ -120,6 +120,8 @@ initialize();
 
 
 function listit(data){
+	resetSearch();	
+	$('#main').html((data.length > 0?"":"Kein resultat"));
 	return $.map( data, function( item ) {
 		//alert(item)
 		
@@ -150,17 +152,22 @@ function listit(data){
 			    	res += '<div class="list_image">'+(item.thumb != "null" && item.thumb != "" && item.thumb != undefined  && item.thumb != "undefined" ? '<img width="135" src="/uploads/'+item.thumb+'"/>': '')+'</div>';
 			        res += '<div class="list_text_holder">';
 			    	res += '<div class="list_title">'+item.name+'</div>';
-			        res += '<div class="list_left_text">';
-			        res += item.streetline1;
-			        res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
-			        res += item.zip+" "+item.city+'<br /><br />';
-			        res += '<a href="'+item.website+'" target="_blank">'+item.website+'</a></div>';
+					res += '<div class="list_left_text"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">';
+					res += item.streetline1;
+					res += (item.streetline2 != "" ?  item.streetline2: "")+"<br />";       
+					res += item.zip+" "+item.city+'</a><br /><br />';
+			        res += '<a href="'+item.website+'" target="_blank">Website</a><br />';
+			        res += '<a href="mailto:'+item.email+'" target="_blank">E-Mail</a></div>';
 			        res += '<div class="list_right_text_holder">';
 			    	res += '<div class="list_right_text_top"></div>';
 			        res += '<div class="list_right_text_center">'+item.description+'</div>';
 			        res += '<div class="list_right_text_bottom"></div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
+			        var cleanTags = $.map(item.tags.split(","), function( text ){
+				    	return " "+$.trim(text).toLowerCase();
+				    });
+				    res += '<div class="tags"><strong>Schlagwörter:</strong> '+cleanTags+'</div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
 			        res += '<div class="google_maps"></div>';
