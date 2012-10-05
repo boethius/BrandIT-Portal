@@ -260,13 +260,14 @@ div.list_right_text_top {
 }
 
 div.list_right_text_center {
-	margin: 0;
-	padding: 0 10px 0 10px;
-	min-height: 100px;
-	width: 308px;
-	background: url(/layout/list_text_box_center.png) repeat-y left top transparent;
+margin: 0;
+padding: 0 10px 0 10px;
+min-height: 100px;
+width: 308px;
+background: url(/layout/list_text_box_center.png) repeat-y left top transparent;
+color: #555;
+font-size: 0.9em;
 }
-
 div.list_right_text_bottom {
 	margin: 0;
     padding: 0;
@@ -288,12 +289,12 @@ height: 24px;
 width: 420px;
 border-radius: 6px;
 -moz-border-radius: 6px;
-border: 1px solid black;
+border: 1px solid #666;
 padding: 5px 10px;
 font-size: 16px;
 margin-top: 5px;
-background: #222;
-color: white;
+background: #EEE;
+color: #333;
 }
 
 
