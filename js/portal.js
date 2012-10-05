@@ -127,7 +127,7 @@ function listit(data){
 		
 			        var lat = item.lat;
 			        var lng = item.long;
-			         if(lng != "NotFound" && lng != ""){
+			         if(lng != "NotFound" && lng != "" && parseInt(lat) != 0 && parseInt(lng) != 0){
 						//bounds.extend( pos );
 			            var pos = new google.maps.LatLng( lat, lng ) ;
 						//markers[parseInt(aData[0])].setIcon('#listeddocicon#');
@@ -170,7 +170,8 @@ function listit(data){
 				    res += '<div class="tags"><strong>Schlagwörter:</strong> '+cleanTags+'</div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
-			        res += '<div class="google_maps"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">Auf der Karte anzeigen</a></div>';
+			        if( parseInt(lat) != 0)
+				        res += '<div class="google_maps"><a href="#" onclick="javascript:map.setCenter(new google.maps.LatLng( '+lat+', '+lng+' ));map.setZoom(13);">Auf der Karte anzeigen</a></div>';
 			        res += '<div class="clear"></div>';
 			        res += '</div>';
 			        
