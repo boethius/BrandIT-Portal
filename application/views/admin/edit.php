@@ -20,6 +20,13 @@
   <li><label for="zip">zip</label>
 <input type="input" name="zip" value="<?php echo $companies_item['zip'] ?>" id="zip" /></li>
   <li><label for="city">city</label>
+  
+  <li><label for="region"><?=$i18n->get_value("region")?></label>
+	<select name="region" id="region">
+		<?php foreach ($regions as $region): ?>
+		<option value="<?=$region['id']?>"<?php if($companies_item['region'] == $region['id']) echo " selected=\"selected\""; ?>><?=$i18n->get_value($region['region_name'])?></option>
+		<?php endforeach ?>
+	</select></li>
 <input type="input" name="city" value="<?php echo $companies_item['city'] ?>" id="city" /></li>
   <li><label for="telefon">telefon</label>
 <input type="input" name="telefon" value="<?php echo $companies_item['telefon'] ?>" id="telefon" /></li>
@@ -40,14 +47,14 @@
 <input type="input" name="lat" value="<?php echo $companies_item['lat'] ?>" id="lat" /></li>
   <li><label for="long">long</label>
 <input type="input" name="long" value="<?php echo $companies_item['long'] ?>" id="long" /></li>
-  <li><label for="description">description</label>
-<textarea name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
   <li><label for="active">active</label>
 <input type="checkbox" value="1" name="active"<?php if($companies_item['active']) echo 'checked="checked"';  ?> /></li>
 <li><label for="userfile">Firmen Logo</label>
 	<input type="file" name="userfile" value="" /><?php if($companies_item['thumb'] != "") { ?> <img width="135" src="/uploads/<?php echo $companies_item['thumb']; ?>" /><?php } echo ""; ?>
 </li>
 </div>
+  <li><label for="description">description</label>
+<textarea cols="30" rows="7" name="description" id="description"><?php echo $companies_item['description'] ?></textarea></li>
 </ul>
 <input type="button" name="back" onclick="location.href='/index.php/admin/'" value="Back" />
 <input type="submit" name="submit" value="Edit" id="submit" value="Create companies item" /> 

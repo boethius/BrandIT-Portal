@@ -89,6 +89,8 @@ class Admin extends CI_Controller {
 	
 	public function edit($company_id){
 	
+		$data['i18n'] = $this->i18n_model;
+		$data['regions'] = $this->region_model->get_regions();
 		$data['companies_item'] = $this->admin_model->get_companies($company_id);
 		$data['portal'] = $this->companies_model->get_portal();
 		

@@ -8,7 +8,7 @@
 
 <div id="content_admin" >
 	
-	<h2>Create New</h2>
+	<h2><?=$title?></h2>
 	<p><a href="/index.php/admin/create/">Create new company</a></p>
 	<hr>
 	<table width="900" id="admin_table">
